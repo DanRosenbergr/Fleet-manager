@@ -1,0 +1,49 @@
+﻿@using CarApp.DTO
+
+@model CarDTO
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="container d-flex justify-content-center my-3">
+		<div class="col-4 myFrame">
+			<h5 class="text-center">Create a new Car</h5>
+			<form asp-action="Create" method="post" asp-controller="Cars">
+				<div class="form-group">
+					<label asp-for="Brand"></label>
+					<input type="text" asp-for="Brand" class="form-control" />
+
+					<label asp-for="Model"></label>
+					<input type="text" asp-for="Model" class="form-control" />
+
+					<label asp-for="Year"></label>
+					<input type="number" asp-for="Year" class="form-control" />
+
+					<label asp-for="Color"></label>
+					<input type="text" asp-for="Color" class="form-control" />
+
+					<label asp-for="LicensePlate"></label>
+					<input type="text" asp-for="LicensePlate" class="form-control" />
+
+					<label asp-for="Mileage"></label>
+					<input type="number" asp-for="Mileage" class="form-control" />
+
+					<label asp-for="Fuel"></label>
+					<select asp-for="Fuel" class="form-control" asp-items="ViewBag.FuelTypes"></select>
+
+					<label asp-for="NextMOT"></label>
+					<input type="date" asp-for="NextMOT" class="form-control" />
+
+				</div>
+				<div class="d-flex justify-content-between">
+					<div>
+						<input class="btn btn-gradient text-success" type="submit" value="Create" />
+						<input class="btn btn-gradient text-danger" type="reset" value="Reset" />
+					</div>
+					<a class="btn btn-gradient" asp-action="Index">Back to list</a>
+				</div>
+			</form>
+		</div>
+	</div>
+}
+
+
+

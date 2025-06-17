@@ -1,0 +1,33 @@
+﻿@using CarApp.DTO;
+
+@model TripLogDTO
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="container d-flex justify-content-center my-3">
+		<div class="col-md-4 myFrame">
+			<h4>Create a new Trip</h4>
+			<form asp-action="Create" method="post">
+				<div class="form-group">
+					<p>CarId: @Model.CarId</p>
+
+					<input type="hidden" asp-for="CarId" />
+
+					<label asp-for="StartDate"></label>
+					<input type="date" asp-for="StartDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+
+					<label asp-for="EndDate"></label>
+					<input type="date" asp-for="EndDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+
+					<label asp-for="DistanceKm"></label>
+					<input type="number" asp-for="DistanceKm" class="form-control" />
+
+					<label asp-for="Purpose"></label>
+					<input type="text" asp-for="Purpose" class="form-control" />
+				</div>
+				<input class="btn btn-gradient btn-100w text-success" type="submit" value="Create" />
+				<input class="btn btn-gradient btn-100w text-danger" type="reset" value="Reset" />
+				<a class="btn btn-gradient btn-100w" asp-controller="Cars" asp-action="Details" asp-route-id="@Model.CarId">Back to list</a>
+			</form>
+		</div>
+	</div>
+}

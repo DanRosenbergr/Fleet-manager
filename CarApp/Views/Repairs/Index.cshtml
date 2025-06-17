@@ -1,0 +1,54 @@
+﻿@using CarApp.DTO
+@model IEnumerable<RepairDTO>
+
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="container my-3">
+		<div class="myFrame col-12 mb-3">
+			<h3>List of all repairs</h3>
+			<form method="get" asp-controller="Repairs" asp-action="OrderBy" class="d-inline-flex flex-column flex-md-row gap-2 align-items-center">
+				<label for="SortOptionRepairs">Sort by:</label>
+				<select name="sortOptionRepair" class="form-control selectInput" asp-items="ViewBag.SortOptionsRepairs">
+					<option value="">-- Select option --</option>
+				</select>
+				<select name="sortDirection" class="form-control selectInput">
+					<option value="Asc" selected>Ascending</option>
+					<option value="Desc">Descending</option>
+				</select>
+				<button type="submit" class="btn btn-gradient btn-100w">Sort</button>
+			</form>
+		</div>
+
+		<div class="myFrame col-12">
+			<table class="table table-striped">
+				<thead class="">
+					<tr>
+						<th style="width: 15%;">Car</th>
+						<th style="width: 10%;">Start date</th>
+						<th style="width: 10%;">End date</th>
+						<th style="width: 5%;">Days in repair</th>
+						<th style="width: 40%;">Description</th>
+						<th style="width: 10%;">Mileage at repair</th>
+						<th style="width: 10%;">Cost</th>
+					</tr>
+				</thead>
+				<tbody>
+				@foreach (var repair in Model)
+				{
+						<tr>
+							<td>@repair.CarBrand @repair.CarModel</td>
+							<td>@repair.RepairDateStart.ToShortDateString()</td>
+							<td>@(repair.RepairDateEnd.HasValue ? repair.RepairDateEnd.Value.ToShortDateString() : "—")</td>
+							<td>@repair.DaysInService</td>
+							<td>@repair.Description</td>
+							<td>@repair.MileageAtRepair.ToString("N0")</td>
+							<td>@repair.Cost.ToString("F2")</td>
+						</tr>
+				}
+				</tbody>
+			</table>
+		</div>
+	</div>
+}
+
+

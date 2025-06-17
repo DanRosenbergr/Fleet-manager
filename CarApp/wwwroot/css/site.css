@@ -1,0 +1,211 @@
+﻿//Colors
+box-shadow: 0 0 8px 0.15rem #40344a;
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0
+}
+a {
+    color: darkcyan;   
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+a:hover {
+        color: darkcyan;        
+    }
+body {
+    font-size: 14px;
+    margin: 0;
+    height: 100vh;
+    background: radial-gradient( circle, #2a2136 0%, /* světlejší střed (tmavě fialová) */
+    #1d1724 50%, /* plynulý přechod */
+    #0f0c12 100% /* velmi tmavý fialový okraj */
+    );
+    color: lightgrey;
+}
+.main {
+    flex: 1;
+}
+.mainWrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+footer.myfooter {
+    height: 30px;
+    line-height: 30px;
+    border-top: 1px solid #302838;
+    background-color: transparent;
+    text-align: center;
+}
+header {
+    border-bottom: 1px solid lightgrey
+}
+
+
+/*****NAVBAR*******/
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='lightgray' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.navbar-toggler {
+    box-shadow: 0 0 8px 0.15rem #40344a;
+}
+.navbar-toggler:focus {
+    box-shadow: 0 0 8px 0.15rem #40344a;
+}
+.navbar-collapse.collapse.show {
+    background: radial-gradient(circle at top left, #2a2136 0%, #1d1724 40%, #0f0c12 100%);
+    border-radius: 5px;
+    padding: 15px;
+}
+.navbar-collapse.collapsing {
+    transition: none;
+}
+.nav-tabs {
+    display: flex;
+}
+.nav-item {
+    flex: 1 1 50%;
+    text-align: center;
+}
+.nav-item .nav-link {
+    width: 100%;
+    border-radius: 0;
+}
+.navbar {
+    height: 60px;
+    background-color: transparent;
+   
+}
+.nav-link {
+    color: lightgrey;
+    transition: all 0.3s ease;
+    font-size: 17px
+}
+.nav-link.active {
+    font-weight: bold;
+    color: whitesmoke;
+    
+}
+.nav-link:hover {
+    color: aliceblue;
+}
+
+.input-frame {
+    width: 300px;
+    height: 500px;
+    border: 1px solid #6e5e7d;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0px 25px rgba(0, 0, 0, 0.7);
+    background: radial-gradient(circle at top left, #2a2136 0%, #1d1724 40%, #0f0c12 100%);
+    );
+}
+.form-control {
+    background-color: transparent;
+    margin: 5px 0px;
+    border: 1px solid #6e5e7d;
+    border-radius: 5px;
+    color: lightgray;
+}
+.form-control:focus {
+        background-color: transparent;
+        border: 1px solid #6e5e7d;
+        outline: none;
+        box-shadow: 0 0 8px 0.15rem #40344a;
+        color: lightgray;
+    }
+
+.btn-gradient {
+    background: linear-gradient(to bottom, #37303b, #221f24);
+    color: lightgray;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border-top: 1px solid #6e5e7d;
+}
+.btn-gradient:hover,.btn-gradient:focus,.btn-gradient:active {
+    background: linear-gradient(to bottom, #37303b, #221f24);
+    border-top: 1px solid #6e5e7d;
+    color: #eee;
+    font-size: 15px;
+    box-shadow: 0 0 8px 0.15rem #40344a;
+}
+.btn-200w {
+    width: 200px;
+    height: 40px;
+}
+.btn-100w {
+    width: 100px;
+    height: 36px;
+}
+.btn-aqua {
+    background: linear-gradient(to bottom, #37303b, #221f24);   
+    font-size: 14px;
+    transition: all 0.3s ease;
+    border-top: 1px solid #6e5e7d;
+    color: aquamarine;
+    opacity: 1;    
+}
+.btn-aqua:hover, .btn-aqua:focus, .btn-aqua:active {
+        color: aquamarine;
+        border-top: 1px solid #6e5e7d;
+        font-size: 15px;
+        box-shadow: 0 0 8px 0.15rem rgba(127, 255, 212, 0.5);
+        opacity: 1;
+}
+
+.myFrame {
+        border: 1px solid #6e5e7d;
+        border-radius: 5px;
+        box-shadow: 0 0px 25px rgba(0, 0, 0, 0.7);
+        background: radial-gradient(circle at top left, #2a2136 0%, #1d1724 40%, #0f0c12 100%);
+        padding: 15px;
+        min-height: 100px;
+    }
+.selectInput {
+    font-size: 14px;
+    width: 130px;
+    text-align: center;
+    color: lightgray;
+    background-color: #1d1724;
+    border: 1px solid #6e5e7d;
+    border-radius: 4px;
+    padding: 5px;
+}
+
+/******TABLE*******/
+.table{
+    font-size: 14px;
+}
+.table-hover tbody tr {
+    transition: all 0.3s ease;
+}
+.table-hover tbody tr:hover {
+    background-color: #3b3240;
+    color: white;
+    transition: all 0.3s ease;
+}
+thead {
+    background: linear-gradient(to bottom, #37303b, #221f24);
+    border-radius: 5px;
+    border-bottom: 1px solid darkgrey;
+}
+thead th:first-child {
+        border-top-left-radius: 5px;
+    }
+thead th:last-child {
+        border-top-right-radius: 5px;
+    }
+.table th, .table td {
+    width: 11.11%; /* 100% / 9 sloupců */
+}
+th {
+    color: lightgrey;
+}
+td {
+    color: lightgray;
+    border-bottom: 1px solid lightgray;
+}
+td:hover {
+        color: aliceblue
+    }

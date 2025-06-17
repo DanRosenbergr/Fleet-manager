@@ -1,0 +1,38 @@
+﻿@using CarApp.DTO;
+
+@model RepairDTO
+@if (User.Identity.IsAuthenticated)
+{
+	<div class="container  d-flex justify-content-center my-3">
+		<div class="col-4 myFrame">
+
+			<h4 class="">Create a new Repair</h4>
+			<p>CarId: @Model.CarId</p>
+			<form asp-action="Create" method="post">
+				<div class="form-group">
+
+					<input type="hidden" asp-for="Id" />
+					<input type="hidden" asp-for="CarId" />
+
+					<label asp-for="RepairDateStart"></label>
+					<input type="date" asp-for="RepairDateStart" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+
+					<label asp-for="RepairDateEnd"></label>
+					<input type="date" asp-for="RepairDateEnd" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
+
+					<label asp-for="Description"></label>
+					<textarea asp-for="Description" class="form-control"></textarea>
+
+					<label asp-for="MileageAtRepair"></label>
+					<input type="number" asp-for="MileageAtRepair" class="form-control" />
+
+					<label asp-for="Cost"></label>
+					<input type="number" asp-for="Cost" class="form-control" />
+				</div>
+				<input class="btn btn-gradient btn-100w text-success" type="submit" value="Create" />
+				<input class="btn btn-gradient btn-100w text-danger" type="reset" value="Reset" />
+				<a class="btn btn-gradient btn-100w" asp-controller="Cars" asp-action="Details" asp-route-id="@Model.CarId">Back to list</a>
+			</form>
+		</div>
+	</div>
+}

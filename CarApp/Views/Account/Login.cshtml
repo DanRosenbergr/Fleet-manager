@@ -1,0 +1,31 @@
+﻿@model LoginViewModel
+<div class="container d-flex justify-content-center">
+	<div class="input-frame">
+		<div class="d-flex flex-column align-content-center">
+			<h5>Login</h5>
+			<div class="text-danger" asp-validation-summary="All"></div>
+			<form asp-action="Login" method="post" autocomplete="on">
+				<input type="hidden" asp-for="ReturnUrl" />
+				<div>
+					<label asp-for="UserName"></label>
+					<input asp-for="UserName" class="form-control" />
+				</div>
+				<div>
+					<label asp-for="Password"></label>
+					<input type="password" asp-for="Password" class="form-control mb-3" />
+				</div>
+				<div>
+					Remember? <input type="checkbox" asp-for="Remember" />
+				</div>
+
+				<button class="btn btn-gradient w-100 mb-5 mt-2" type="submit">Log In</button>
+				
+				@* <a asp-controller="Account" asp-action="Register" class="btn btn-gradient w-100">Sign in</a> *@
+			</form>
+			<p>No account?</p>
+			<form asp-controller="Account" asp-action="Register" method="get">
+				<button class="btn btn-gradient w-100" type="submit">Sign in</button>
+			</form>
+		</div>		
+	</div>
+</div>
