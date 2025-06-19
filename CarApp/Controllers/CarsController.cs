@@ -52,11 +52,7 @@ namespace CarApp.Controllers {
             return View(carToEdit);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(CarDTO carDto) {
-            //if (!ModelState.IsValid) {
-            //    ViewBag.FuelTypes = new SelectList(Enum.GetValues(typeof(FuelType)));
-            //    return View(carDto); 
-            //}
+        public async Task<IActionResult> Edit(CarDTO carDto) {           
             await _carServices.UpdateAsync(carDto);
             return RedirectToAction("Index"); ;
         }

@@ -14,18 +14,20 @@ namespace CarApp.Controllers {
         public RepairsController(RepairService repairService) {
             _repairService = repairService;
         }
-
+        
         public IActionResult Index() {
-            var allrepairs = _repairService.GetAllRepairs();
-
             ViewBag.SortOptionsRepairs = new SelectList(new List<SelectListItem> {
-                new SelectListItem { Value = "RepairDateStart", Text = "Start Date" },
-                new SelectListItem { Value = "RepairDateEnd", Text = "End Date" },
-                new SelectListItem { Value = "Cost", Text = "Cost" },                
-                }, "Value", "Text");
+               new SelectListItem { Value = "RepairDateStart", Text = "Start Date" },
+               new SelectListItem { Value = "RepairDateEnd", Text = "End Date" },
+               new SelectListItem { Value = "Cost", Text = "Cost" },
+           }, "Value", "Text");
 
-            return View(allrepairs);
-        }
+            var repairs = _repairService.GetAllRepairs().ToList(); // Returns List<RepairDto>  
+
+            var model = _repairService.BuildRepairStats(repairs);
+            
+            return View(model);
+        }      
 
         [HttpGet]
         public IActionResult Create(int carId) {            
@@ -35,8 +37,11 @@ namespace CarApp.Controllers {
 
         [HttpPost]
         public async Task<IActionResult> Create(RepairDTO newRepair) {
-            await _repairService.CreateRepairAsync(newRepair);            
-            return RedirectToAction("Details", "Cars", new { id = newRepair.CarId});
+            if (!ModelState.IsValid) {
+                return View(newRepair);
+            }
+            await _repairService.CreateRepairAsync(newRepair);  
+            return RedirectToAction("Details", "Cars", new { id = newRepair.CarId });
         }
 
         [HttpPost]
@@ -60,7 +65,7 @@ namespace CarApp.Controllers {
         //Order by selection
         public IActionResult OrderBy(sortOptionRepairs sortOptionRepair, string sortDirection) {
             bool descending = sortDirection == "Desc";
-            var orderedRepairs = _repairService.OrderBy(sortOptionRepair, descending);
+            var orderedRepairs = _repairService.OrderBy(sortOptionRepair, descending).ToList();
 
             ViewBag.SortOptionsRepairs = new SelectList(new List<SelectListItem> {
                 new SelectListItem { Value = "RepairDateStart", Text = "Start Date" },
@@ -69,7 +74,10 @@ namespace CarApp.Controllers {
                 }, "Value", "Text", sortOptionRepair);
 
             ViewBag.sortDirection = sortDirection;
-            return View("Index", orderedRepairs);
+
+            var model = _repairService.BuildRepairStats(orderedRepairs);
+
+            return View("Index", model);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System.Globalization;
 using CarApp;
 using CarApp.Models;
 using CarApp.Services;
@@ -5,11 +6,17 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+var cultureInfo = new CultureInfo("cs-CZ");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
+
 builder.Services.AddControllersWithViews();
 
 // add db context connection string
 builder.Services.AddDbContext<AppDbContext>(options => {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppDbConnection"));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppDbConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppMonsterAPIConnection"));
 });
 
 //adding to Dependecy Injection container

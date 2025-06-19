@@ -33,6 +33,21 @@ namespace CarApp.Services {
             return tripDtos;
         }
 
+        public async Task<List<TripLogDTO>> GetAllTripLogs(int carId) {
+            var tripLogs = await _dbContext.TripLogs
+                .Where(t => t.CarId == carId)
+                .ToListAsync();
+
+            return tripLogs.Select(t => new TripLogDTO {
+                Id = t.Id,
+                CarId = t.CarId,
+                StartDate = t.StartDate,
+                EndDate = t.EndDate,
+                DistanceKm = t.DistanceKm,
+                Purpose = t.Purpose
+            }).ToList();
+        }
+
         internal async Task<int?> DeleteTripAsync(int id) {
             var tripToDelete = await _dbContext.TripLogs.FindAsync(id);
             if (tripToDelete == null) {
@@ -61,6 +76,7 @@ namespace CarApp.Services {
 
             await _dbContext.SaveChangesAsync();
         }
+        
         //double edit metoda
         internal async Task<TripLogDTO> GetByIdAsync(int id) {
             var tripToEdit = await _dbContext.TripLogs.FindAsync(id);
@@ -89,48 +105,11 @@ namespace CarApp.Services {
             existingTrip.CarId = tripLogDTO.CarId;
 
             await _dbContext.SaveChangesAsync();
-        }
-
-
-        private TripLog DtoToModel(TripLogDTO triplogDto) {
-            return new TripLog {
-                Id = triplogDto.Id,
-                StartDate = triplogDto.StartDate,
-                EndDate = triplogDto.EndDate,
-                DistanceKm = triplogDto.DistanceKm,                
-                Purpose = triplogDto.Purpose,
-                CarId = triplogDto.CarId,
-                UserID = triplogDto.UserID,
-            };
-        }
-        private TripLogDTO ModeltoDto(TripLog triplog) {
-            return new TripLogDTO {
-                Id = triplog.Id,
-                StartDate = triplog.StartDate,
-                EndDate = triplog.EndDate,
-                DistanceKm = triplog.DistanceKm,                
-                Purpose = triplog.Purpose,
-                CarId = triplog.CarId,
-                UserID = triplog.UserID,
-            };
-        }
-        public async Task<List<TripLogDTO>> GetAllTripLogs(int carId) {
-            var tripLogs = await _dbContext.TripLogs
-                .Where(t => t.CarId == carId)
-                .ToListAsync();
-
-            return tripLogs.Select(t => new TripLogDTO {
-                Id = t.Id,
-                CarId = t.CarId,
-                StartDate = t.StartDate,
-                EndDate = t.EndDate,
-                DistanceKm = t.DistanceKm,
-                Purpose = t.Purpose
-            }).ToList();
-        }
-
+        }              
+       
         internal IEnumerable<TripLogDTO> OrderBy(SortOptionTrips sortOption, bool descending) {
-            var query = _dbContext.TripLogs.Include(r => r.Car).AsQueryable();
+            var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+            var query = _dbContext.TripLogs.Where(u => u.UserID == userId).Include(r => r.Car).AsQueryable();
 
             switch (sortOption) {
                 case SortOptionTrips.DistanceKm:
@@ -158,5 +137,28 @@ namespace CarApp.Services {
             return tripsDtos;
         }
 
+        //pomocne metody
+        private TripLog DtoToModel(TripLogDTO triplogDto) {
+            return new TripLog {
+                Id = triplogDto.Id,
+                StartDate = triplogDto.StartDate,
+                EndDate = triplogDto.EndDate,
+                DistanceKm = triplogDto.DistanceKm,
+                Purpose = triplogDto.Purpose,
+                CarId = triplogDto.CarId,
+                UserID = triplogDto.UserID,
+            };
+        }
+        private TripLogDTO ModeltoDto(TripLog triplog) {
+            return new TripLogDTO {
+                Id = triplog.Id,
+                StartDate = triplog.StartDate,
+                EndDate = triplog.EndDate,
+                DistanceKm = triplog.DistanceKm,
+                Purpose = triplog.Purpose,
+                CarId = triplog.CarId,
+                UserID = triplog.UserID,
+            };
+        }
     }
 }

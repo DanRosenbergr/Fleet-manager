@@ -4,11 +4,26 @@ box-shadow: 0 0 8px 0.15rem #40344a;
 html, body {
     height: 100%;
     margin: 0;
-    padding: 0
+    padding: 0;
+    font-family: "Montserrat", sans-serif;    
+}
+p {
+    font-family: "Montserrat", sans-serif;
+    line-height: 1.8;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Bebas Neue", sans-serif;
 }
 a {
-    color: darkcyan;   
+    color: darkcyan;
     transition: color 0.3s ease, opacity 0.3s ease;
+    font-family: "Montserrat", sans-serif;
+}
+label {
+    font-family: "Montserrat", sans-serif;
+}
+li {
+    font-family: "Montserrat", sans-serif;
 }
 a:hover {
         color: darkcyan;        
@@ -41,7 +56,18 @@ footer.myfooter {
 header {
     border-bottom: 1px solid lightgrey
 }
-
+option {
+    color: lightgray;
+    background-color: #1d1724;
+}
+.form-check-input:focus {
+        box-shadow: none;
+        border-color: #725794;
+}
+    .form-check-input:checked {
+        background-color: #725794;
+        border-color: lightgray;
+    }
 
 /*****NAVBAR*******/
 .navbar-toggler-icon {
@@ -107,6 +133,7 @@ header {
     border: 1px solid #6e5e7d;
     border-radius: 5px;
     color: lightgray;
+    font-family: "Montserrat", sans-serif;
 }
 .form-control:focus {
         background-color: transparent;
@@ -122,11 +149,18 @@ header {
     font-size: 14px;
     transition: all 0.3s ease;
     border-top: 1px solid #6e5e7d;
+    position: relative;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
 }
-.btn-gradient:hover,.btn-gradient:focus,.btn-gradient:active {
+.btn-gradient:active {
+    top: 3px;
+/*    box-shadow: 0 2px 0 #1a171c;*/
+}
+.btn-gradient:hover {
     background: linear-gradient(to bottom, #37303b, #221f24);
     border-top: 1px solid #6e5e7d;
-    color: #eee;
+    color: lightgray;
     font-size: 15px;
     box-shadow: 0 0 8px 0.15rem #40344a;
 }
@@ -139,29 +173,36 @@ header {
     height: 36px;
 }
 .btn-aqua {
-    background: linear-gradient(to bottom, #37303b, #221f24);   
+    background: linear-gradient(to bottom, #37303b, #221f24);
     font-size: 14px;
     transition: all 0.3s ease;
     border-top: 1px solid #6e5e7d;
     color: aquamarine;
-    opacity: 1;    
+    position: relative;
+    cursor: pointer;
+    font-family: "Montserrat", sans-serif;
 }
-.btn-aqua:hover, .btn-aqua:focus, .btn-aqua:active {
+.btn-aqua:active {
+        top: 3px;
+       
+    }
+.btn-aqua:hover  {
         color: aquamarine;
         border-top: 1px solid #6e5e7d;
         font-size: 15px;
         box-shadow: 0 0 8px 0.15rem rgba(127, 255, 212, 0.5);
-        opacity: 1;
-}
+/*        opacity: 1;*/
+    }
 
 .myFrame {
-        border: 1px solid #6e5e7d;
-        border-radius: 5px;
-        box-shadow: 0 0px 25px rgba(0, 0, 0, 0.7);
-        background: radial-gradient(circle at top left, #2a2136 0%, #1d1724 40%, #0f0c12 100%);
-        padding: 15px;
-        min-height: 100px;
-    }
+    border: 1px solid #6e5e7d;
+    border-radius: 5px;
+    box-shadow: 0 0px 25px rgba(0, 0, 0, 0.7);
+        background: radial-gradient(circle at bottom right, #2a2136 0%, #1d1724 60%, #0f0c12 100%);
+/*    background: radial-gradient(circle at bottom right, #473f52 0%, #1d1724 60%, #0f0c12 100%);*/
+    padding: 15px;
+    min-height: 100px;
+}
 .selectInput {
     font-size: 14px;
     width: 130px;
@@ -171,11 +212,19 @@ header {
     border: 1px solid #6e5e7d;
     border-radius: 4px;
     padding: 5px;
+    font-family: "Montserrat", sans-serif;
 }
 
 /******TABLE*******/
-.table{
+.table {
     font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+    font-style: italic;
+   
+}
+.tableHeight {
+    max-height: 400px;
+    overflow-y: auto;
 }
 .table-hover tbody tr {
     transition: all 0.3s ease;
@@ -189,6 +238,13 @@ thead {
     background: linear-gradient(to bottom, #37303b, #221f24);
     border-radius: 5px;
     border-bottom: 1px solid darkgrey;
+}
+table thead th {
+    position: sticky;
+    top: 0;
+    background: linear-gradient(to bottom, #37303b, #221f24);
+    background-color: white;
+    z-index: 10;
 }
 thead th:first-child {
         border-top-left-radius: 5px;

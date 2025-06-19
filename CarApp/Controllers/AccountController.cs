@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CarApp.Controllers {
+    [Authorize]
     public class AccountController : Controller {
 
         UserManager<AppUser> _userManager;
@@ -15,7 +16,7 @@ namespace CarApp.Controllers {
             _signInManager = signInManager;
         }
 
-        [HttpGet]
+        [AllowAnonymous]
         public IActionResult Login(string returnUrl) {
             LoginViewModel model = new LoginViewModel();
             model.ReturnUrl = returnUrl;
@@ -25,14 +26,27 @@ namespace CarApp.Controllers {
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginViewModel login) {
+        public async Task<IActionResult> Login(LoginViewModel login) {        
+
             if (ModelState.IsValid) {
                 AppUser userToLogin = await _userManager.FindByNameAsync(login.UserName);
-                if (userToLogin != null) {
+                //if (userToLogin != null) {
+                //    var signInResult = await _signInManager.PasswordSignInAsync(userToLogin,
+                //        login.Password, login.Remember, false);//zmena, pri pridani checkboxu(login.Remember)
+                //    if (signInResult.Succeeded) {
+                //        return Redirect(login.ReturnUrl ?? "/cars/index");
+                //    }
+                //}
+                if (userToLogin == null) {
+                    ModelState.AddModelError("", "User not found");
+                } else {
                     var signInResult = await _signInManager.PasswordSignInAsync(userToLogin,
-                        login.Password, login.Remember, false);//zmena, pri pridani checkboxu(login.Remember)
+                        login.Password, login.Remember, false);
+
                     if (signInResult.Succeeded) {
                         return Redirect(login.ReturnUrl ?? "/cars/index");
+                    } else {
+                        ModelState.AddModelError("", "Wrong password");
                     }
                 }
             }

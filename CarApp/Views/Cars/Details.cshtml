@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="d-flex justify-content-between col-12 myFrame my-3">		
 		<div>
-			<h5>@Model.Brand @Model.Model </h5>
+			<h3>@Model.Brand @Model.Model </h3>
 			<p>@Model.Year</p>
 			@* <p>Car ID: @Model.Id</p> *@
 		</div>
@@ -14,12 +14,12 @@
 	</div>
 
 	
-	<div class="col-12">
-		<div class="row">
+	<div class="">
+		<div class="d-flex flex-column flex-xl-row gap-2">
 			
-			<div class="myFrame col-xxl-6 mb-3">
+			<div class="myFrame flex-fill mb-3">
 				<div class="d-flex justify-content-between align-items-center mb-2">
-					<h4 class="mb-0">Trip Logs</h4>
+					<h4 >Trip Logs</h4>
 					@* <p>Car ID: @Model.Id</p> *@
 					<a class="btn btn-aqua btn-200w" asp-controller="TripLogs" asp-action="Create" asp-route-carId="@Model.Id">
 						Add Trip Log
@@ -28,9 +28,9 @@
 				@await Html.PartialAsync("_TripLogsPartial", Model.TripLogs)
 			</div>
 			
-			<div class="myFrame col-xxl-6 mb-3">
+			<div class="myFrame flex-fill mb-3">
 				<div class="d-flex justify-content-between align-items-center  mb-2">
-					<h4 class="mb-0">Repairs</h4>
+					<h4 >Repairs</h4>
 					@* <p>Car ID: @Model.Id</p> *@
 					<a class="btn btn-aqua btn-200w" asp-controller="Repairs" asp-action="Create" asp-route-carId="@Model.Id">
 						Add Repair

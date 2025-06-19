@@ -1,5 +1,31 @@
 ﻿<div class="container">
-	<h1 class="text-center"> Information</h1>
+	<h1 class="text-center my-4 display-4">How to</h1>
 
-	
+	<div class="myFrame mb-3">
+        <h3>Explore the App Without Registration</h3>
+        <p>
+            For demonstration purposes, this page allows you to explore the full functionality of the application
+            using a pre-configured demo account. You can log in quickly with the provided demo credentials, which will
+            automatically fill in the necessary login information. Once logged in, you can freely navigate through the 
+            entire app and test all available features without the need to register or enter any personal data. 
+            This includes viewing records, adding or editing entries, sorting data, and trying out all key components
+            of the interface. Feel free to explore and interact with the app as if you were a regular user.
+        </p>
+	</div>
+    <div class="myFrame ">
+        <h3>No Sign-Up Needed – Just Try It</h3>
+        <div class="d-flex justify-content-around align-content-center">
+            <div>
+                <p>login: tryMe </p>
+                <p>password: tryMe1234 </p>
+            </div>
+            <form method="get" action="@Url.Action("Login", "Account")">
+                <input type="hidden" name="ReturnUrl" value="/" />
+                <input type="hidden" name="demoUser" value="true" />
+                <button type="submit" class="btn btn-gradient btn-200w">
+                    Log in
+                </button>
+            </form>
+        </div>       
+    </div>
 </div>

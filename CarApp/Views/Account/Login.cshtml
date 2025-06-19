@@ -1,11 +1,23 @@
 ﻿@model LoginViewModel
-<div class="container d-flex justify-content-center">
-	<div class="input-frame">
+@{
+	if (Context.Request.Query["demoUser"] == "true")
+	{
+		Model.UserName = "tryMe";
+		Model.Password = "tryMe1234";
+	}
+}
+<div class="container d-flex justify-content-center my-3">
+	<div class="input-frame position-relative">
+		<a asp-controller="home" asp-action="index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="back">
+			<i class="bi bi-x-lg"></i>
+		</a>
 		<div class="d-flex flex-column align-content-center">
-			<h5>Login</h5>
+			<h3 class="text-center">Log in</h3>
 			<div class="text-danger" asp-validation-summary="All"></div>
-			<form asp-action="Login" method="post" autocomplete="on">
-				<input type="hidden" asp-for="ReturnUrl" />
+			<form asp-action="Login" method="post" autocomplete="off">
+
+				<input type="hidden" asp-for="ReturnUrl"/>
+
 				<div>
 					<label asp-for="UserName"></label>
 					<input asp-for="UserName" class="form-control" />
@@ -14,18 +26,16 @@
 					<label asp-for="Password"></label>
 					<input type="password" asp-for="Password" class="form-control mb-3" />
 				</div>
-				<div>
-					Remember? <input type="checkbox" asp-for="Remember" />
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" asp-for="Remember" id="rememberMe">
+					<label class="form-check-label" for="rememberMe">Remember me</label>
 				</div>
-
 				<button class="btn btn-gradient w-100 mb-5 mt-2" type="submit">Log In</button>
 				
-				@* <a asp-controller="Account" asp-action="Register" class="btn btn-gradient w-100">Sign in</a> *@
+				
 			</form>
 			<p>No account?</p>
-			<form asp-controller="Account" asp-action="Register" method="get">
-				<button class="btn btn-gradient w-100" type="submit">Sign in</button>
-			</form>
+			<a asp-controller="Account" asp-action="Register" class="btn btn-gradient btn-aqua w-100">Sign in</a>
 		</div>		
 	</div>
 </div>

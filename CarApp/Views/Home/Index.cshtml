@@ -1,14 +1,24 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
-
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-	<form method="get">
-		<button type="submit"
-				class="btn btn-gradient btn-200w"
-				formaction="@Url.Action("Login", "Account")">
-			Log in
-		</button>
-	</form>
+﻿
+<div class="container">
+    
+        <h1 class="display-4 my-3 text-center">Welcome to fleet manager</h1>
+        <div class="myFrame mb-5">
+            <h5>Manage Your Vehicles in One Place</h5>
+            <p>
+                Our application provides a clear and organized way to keep track of all the vehicles in your fleet.
+                Users can easily add, edit, or remove individual cars, including key details such as make, model, year,
+                and license plate. Each user has access only to their own data – securely and privately.
+            </p>
+        </div>
+        <div class="myFrame mb-5">
+            <h5>Detailed Records of Repairs and Trips</h5>
+            <p>
+                For every vehicle, you can maintain a detailed history of repairs and trip logs. The repairs section
+                allows you to track maintenance, part replacements, and inspections. Trip records help you monitor routes,
+                trip purposes, and mileage. Everything is designed to give you full control and insight into your fleet's
+                condition and usage.
+            </p>
+        </div>
+    
 </div>
+

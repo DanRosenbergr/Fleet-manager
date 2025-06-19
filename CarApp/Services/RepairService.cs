@@ -73,6 +73,7 @@ namespace CarApp.Services {
 
             await _dbContext.SaveChangesAsync();
         }
+        
         //double edit metody
         internal async Task<RepairDTO> GetByIdAsync(int id) {
             var repairToEdit = await _dbContext.Repairs.FindAsync(id);
@@ -80,7 +81,6 @@ namespace CarApp.Services {
                 throw new Exception($"Repair with ID:{id} not found.");
             return ModelToDto(repairToEdit);
         }
-
         internal async Task UpdateAsync(RepairDTO repairDto, int id) {
             var repairToUpdate = await _dbContext.Repairs.FindAsync(id);
             if (repairToUpdate == null)
@@ -93,36 +93,12 @@ namespace CarApp.Services {
             repairToUpdate.Cost = repairDto.Cost;
             repairToUpdate.CarId = repairDto.CarId;
             await _dbContext.SaveChangesAsync();
-        }
-
-        
-
-        private RepairDTO ModelToDto(Repair repair) {
-            return new RepairDTO {
-                Id = repair.Id,
-                Description = repair.Description,
-                RepairDateStart = repair.RepairDateStart,
-                RepairDateEnd = repair.RepairDateEnd,
-                MileageAtRepair = repair.MileageAtRepair,
-                Cost = repair.Cost,
-                CarId = repair.CarId
-            };
-        }
-        private Repair DtoToModel(RepairDTO repairDto) {
-            return new Repair {
-                Id = repairDto.Id,
-                Description = repairDto.Description,
-                RepairDateStart = repairDto.RepairDateStart,
-                RepairDateEnd = repairDto.RepairDateEnd,
-                MileageAtRepair = repairDto.MileageAtRepair,
-                Cost = repairDto.Cost,
-                CarId = repairDto.CarId
-            };
-        }
+        }           
 
 
         internal IEnumerable<RepairDTO> OrderBy(sortOptionRepairs sortOption, bool descending) {
-            var query = _dbContext.Repairs.Include(r => r.Car).AsQueryable();
+            var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+            var query = _dbContext.Repairs.Where(u => u.UserID == userId).Include(r => r.Car).AsQueryable();
 
             switch (sortOption) {
                 case sortOptionRepairs.RepairDateStart:
@@ -148,6 +124,83 @@ namespace CarApp.Services {
                 repairDtos.Add(dto);
             }
             return repairDtos;
+        }
+
+        //pomocne metody
+        public RepairStatsViewModel BuildRepairStats(List<RepairDTO> repairs) {
+            var totalCost = repairs.Sum(r => r.Cost);
+            var averageCost = repairs.Any() ? repairs.Average(r => r.Cost) : 0;
+            var totalDaysOff = repairs.Sum(d => d.DaysInService);
+
+            var highcost = repairs.GroupBy(c => c.CarId)
+                            .OrderByDescending(g => g.Sum(r => r.Cost))
+                            .Select(g => new {
+                                CarId = g.Key,
+                                highestCost = g.Sum(r => r.Cost),
+                                CarBrand = g.First().CarBrand,
+                                CarModel = g.First().CarModel
+                            })
+                            .FirstOrDefault();
+
+            var longestOff = repairs.GroupBy(c => c.CarId)
+                            .OrderByDescending(g => g.Sum(r => r.DaysInService))
+                            .Select(g => new {
+                                CarId = g.Key,
+                                DaysOff = g.Sum(r => r.DaysInService),
+                                CarBrand = g.First().CarBrand,
+                                CarModel = g.First().CarModel
+                            })
+                            .FirstOrDefault();
+
+            var mostOften = repairs.GroupBy(r => r.CarId)
+                            .OrderByDescending(g => g.Count())
+                            .Select(g => new {
+                                CarId = g.Key,
+                                Count = g.Count(),
+                                CarBrand = g.First().CarBrand,
+                                CarModel = g.First().CarModel
+                            })
+                            .FirstOrDefault();
+
+            return new RepairStatsViewModel {
+                Repairs = repairs,
+                TotalRepairs = repairs.Count,
+                TotalCost = totalCost,
+                AverageCost = averageCost,
+                DaysOff = totalDaysOff,
+                HighCost = highcost?.highestCost ?? 0,
+                HighCostCarBrand = highcost?.CarBrand,
+                HighCostCarModel = highcost?.CarModel,
+                LongestOff = longestOff?.DaysOff ?? 0,
+                LongestOffCarBrand = longestOff?.CarBrand,
+                LongestOffCarModel = longestOff?.CarModel,
+                MostRepairedCount = mostOften?.Count ?? 0,
+                MostRepairedCarBrand = mostOften?.CarBrand,
+                MostRepairedCarModel = mostOften?.CarModel
+            };
+        }
+               
+        private RepairDTO ModelToDto(Repair repair) {
+            return new RepairDTO {
+                Id = repair.Id,
+                Description = repair.Description,
+                RepairDateStart = repair.RepairDateStart,
+                RepairDateEnd = repair.RepairDateEnd,
+                MileageAtRepair = repair.MileageAtRepair,
+                Cost = repair.Cost,
+                CarId = repair.CarId
+            };
+        }
+        private Repair DtoToModel(RepairDTO repairDto) {
+            return new Repair {
+                Id = repairDto.Id,
+                Description = repairDto.Description,
+                RepairDateStart = repairDto.RepairDateStart,
+                RepairDateEnd = repairDto.RepairDateEnd,
+                MileageAtRepair = repairDto.MileageAtRepair,
+                Cost = repairDto.Cost,
+                CarId = repairDto.CarId
+            };
         }
     }
 }

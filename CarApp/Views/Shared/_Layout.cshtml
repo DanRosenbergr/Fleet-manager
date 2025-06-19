@@ -8,31 +8,41 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>@ViewData["Title"] - CarApp</title>
+	@* NADPIS *@
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	@* TEXT *@
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
 	<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 	<link rel="stylesheet" href="~/CarApp.styles.css" asp-append-version="true" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+	
 </head>
 <body>
 	<div class="mainWrapper">
 		<header class="d-flex align-items-center justify-content-between">
-			<nav class="navbar navbar-expand-sm navbar-toggleable-sm mb-3">
-				<div class="container">					
-					@* <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CarManagerApp</a> *@
-					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-							aria-expanded="false" aria-label="Toggle navigation">
-						<span class="navbar-toggler-icon"></span>
-					</button>
+			<nav class="navbar navbar-expand-sm navbar-toggleable-sm col-10">
+				<div class="container">	
+					<div>
+						<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Fleet manager</a>
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+								aria-expanded="false" aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+					</div>				
 					
-					<div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-						<ul class="navbar-nav flex-grow-1">
+					<div class="navbar-collapse collapse">
+						<ul class="navbar-nav d-flex flex-row justify-content-evenly w-100 ">
 							<li class="">
 								<a class="nav-link @(currentController == "Home" && currentAction == "Index" ? "active" : "")"
 								   asp-controller="Home" asp-action="Index">Home</a>
 							</li>
 							<li class="">
 								<a class="nav-link @(currentController == "Home" && currentAction == "Info" ? "active" : "")"
-								   asp-controller="Home" asp-action="Info">Info</a>
+								   asp-controller="Home" asp-action="Info">How to</a>
 							</li>
 							<li class="">
 								<a class="nav-link @(currentController == "Cars" ? "active" : "")"
@@ -50,17 +60,25 @@
 					</div>					
 				</div>				
 			</nav>
-			<div class="d-flex align-items-center me-4">
+			<div class="me-5 col-2">
 				@if (User.Identity.IsAuthenticated)
 				{
-					<div class="me-3">Logged-in: @User.Identity.Name </div>
-					<form asp-controller="Account" asp-action="Logout" method="post">
-						<button class="btn btn-gradient btn-100w" type="submit">Sign out</button>
-					</form>
+					<div class="d-flex align-items-center justify-content-center">
+						<div class="me-3">
+							<p class="mb-0">Logged-in: @User.Identity.Name </p>
+						</div>
+						<div>
+							<form asp-controller="Account" asp-action="Logout" method="post">
+								<button class="btn btn-gradient btn-100w" type="submit">Sign out</button>
+							</form>
+						</div>
+						
+					</div>					
 				}
 				else
 				{
 					<form asp-controller="Account" asp-action="Login" method="get">
+						<input type="hidden" name="returnUrl" value="/" />
 						<button class="btn btn-gradient btn-100w" type="submit">Log in</button>
 					</form>
 				}
@@ -73,8 +91,8 @@
 			</div>
 		</main>
 		<footer class="myfooter text-muted text-center">
-			<div class="">
-				&copy; 2025 - D4nB3rg - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+			<div class="text-muted">
+				<p>&copy; 2025 - D4n_b3rg</p>
 			</div>
 		</footer>
 	</div>

@@ -4,34 +4,45 @@
 @if (User.Identity.IsAuthenticated)
 {
 	<div class="container d-flex justify-content-center my-3">
-		<div class="col-4 myFrame">
-			<h5 class="text-center">Create a new Car</h5>
+		<div class="col-4 myFrame position-relative">
+			<a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
+				<i class="bi bi-x-lg"></i>
+			</a>
+			<h3 class="text-center">Create a new Car</h3>
 			<form asp-action="Create" method="post" asp-controller="Cars">
-				<div class="form-group">
-					<label asp-for="Brand"></label>
-					<input type="text" asp-for="Brand" class="form-control" />
-
-					<label asp-for="Model"></label>
-					<input type="text" asp-for="Model" class="form-control" />
-
-					<label asp-for="Year"></label>
-					<input type="number" asp-for="Year" class="form-control" />
-
-					<label asp-for="Color"></label>
-					<input type="text" asp-for="Color" class="form-control" />
-
-					<label asp-for="LicensePlate"></label>
-					<input type="text" asp-for="LicensePlate" class="form-control" />
-
-					<label asp-for="Mileage"></label>
-					<input type="number" asp-for="Mileage" class="form-control" />
-
-					<label asp-for="Fuel"></label>
-					<select asp-for="Fuel" class="form-control" asp-items="ViewBag.FuelTypes"></select>
-
-					<label asp-for="NextMOT"></label>
-					<input type="date" asp-for="NextMOT" class="form-control" />
-
+				<div class="form-group">					
+					<div class="mb-2">
+						<label asp-for="Brand"></label>
+						<input type="text" asp-for="Brand" class="form-control" />
+					</div>
+					<div class="mb-2">
+						<label asp-for="Model"></label>
+						<input type="text" asp-for="Model" class="form-control" />
+					</div>
+					<div class ="mb-2">
+						<label asp-for="Year">Year of manufacture:</label>
+						<input type="number" asp-for="Year" class="form-control" />
+					</div>
+					<div class="mb-2">
+						<label asp-for="Color">Color:</label>
+						<input type="text" asp-for="Color" class="form-control" />
+					</div>
+					<div class="mb-2">
+						<label asp-for="LicensePlate">License plate:</label>
+						<input type="text" asp-for="LicensePlate" class="form-control" />
+					</div>
+					<div class="mb-2">
+						<label asp-for="Mileage">Current mileage:</label>
+						<input type="number" asp-for="Mileage" class="form-control" />
+					</div>
+					<div class="mb-2">
+						<label asp-for="Fuel">Fuel type:</label>
+						<select asp-for="Fuel" class="form-control" asp-items="ViewBag.FuelTypes"></select>
+					</div>
+					<div class="mb-2">
+						<label asp-for="NextMOT">Next MOT:</label>
+						<input type="date" asp-for="NextMOT" class="form-control" />
+					</div>
 				</div>
 				<div class="d-flex justify-content-between">
 					<div>
