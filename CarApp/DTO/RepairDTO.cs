@@ -9,13 +9,8 @@ namespace CarApp.DTO {
         public string Description { get; set; }
 
         public DateOnly RepairDateStart { get; set; }
-
-        public DateOnly? RepairDateEnd { get; set; }
-
-
-
-        public int DaysInService => (RepairDateEnd.HasValue ? RepairDateEnd.Value :
-            DateOnly.FromDateTime(DateTime.Today)).DayNumber - RepairDateStart.DayNumber;
+        public DateOnly RepairDateEnd { get; set; }
+        public int DaysInService { get; set; }
 
         public int MileageAtRepair { get; set; }
 
@@ -28,7 +23,7 @@ namespace CarApp.DTO {
         public string? CarModel { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext) {
-            if (RepairDateEnd.HasValue && RepairDateEnd < RepairDateStart) {
+            if (RepairDateEnd < RepairDateStart) {
                 yield return new ValidationResult(
                     "Repair end date cannot be earlier than the start date.",
                     new[] { nameof(RepairDateEnd) });

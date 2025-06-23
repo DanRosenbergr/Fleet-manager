@@ -8,11 +8,8 @@ namespace CarApp.Models {
         public string Description { get; set; }
 
         public DateOnly RepairDateStart { get; set; }
-
-        public DateOnly? RepairDateEnd { get; set; }
-
-        public int DaysInService =>(RepairDateEnd.HasValue ? RepairDateEnd.Value : 
-            DateOnly.FromDateTime(DateTime.Today)).DayNumber - RepairDateStart.DayNumber;
+        public DateOnly RepairDateEnd { get; set; }
+        public int DaysInService { get; set; }
 
         public int MileageAtRepair { get; set; } 
 

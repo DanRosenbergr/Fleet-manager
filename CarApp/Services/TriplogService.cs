@@ -84,7 +84,6 @@ namespace CarApp.Services {
                 throw new Exception($"TripLog with ID:{id} not found.");
             return ModeltoDto(tripToEdit);
         }
-
         internal async Task UpdateAsync(TripLogDTO tripLogDTO, int id) { 
             
             var existingTrip = await _dbContext.TripLogs.FindAsync(id);
@@ -93,13 +92,14 @@ namespace CarApp.Services {
 
             var car = await _dbContext.Cars.FindAsync(existingTrip.CarId);
             if (car == null)
-                throw new Exception($"TripLog with ID:{id} not found.");
+                throw new Exception($"Car with ID:{existingTrip.CarId} not found.");
             
             int distanceDifference = tripLogDTO.DistanceKm - existingTrip.DistanceKm;
             car.Mileage += distanceDifference;
 
             existingTrip.StartDate = tripLogDTO.StartDate;
             existingTrip.EndDate = tripLogDTO.EndDate;
+            existingTrip.DaysOut = (tripLogDTO.EndDate.DayNumber - tripLogDTO.StartDate.DayNumber + 1);
             existingTrip.DistanceKm = tripLogDTO.DistanceKm;
             existingTrip.Purpose = tripLogDTO.Purpose;
             existingTrip.CarId = tripLogDTO.CarId;
@@ -121,6 +121,9 @@ namespace CarApp.Services {
                 case SortOptionTrips.EndDate:
                     query = descending ? query.OrderByDescending(r => r.EndDate) : query.OrderBy(r => r.EndDate);
                     break;
+                case SortOptionTrips.DaysOut:
+                    query = descending ? query.OrderByDescending(r => r.DaysOut) : query.OrderBy(r => r.DaysOut);
+                    break;
                 default:
                     break;
             }
@@ -138,11 +141,54 @@ namespace CarApp.Services {
         }
 
         //pomocne metody
+        public TripLogStatsViewModel BuildTripsStats(List<TripLogDTO> tripLogs) {
+            var TotalDistance = tripLogs.Sum(t => t.DistanceKm);
+            var AverageDistanceKm = tripLogs.Count > 0 ? tripLogs.Average(t => t.DistanceKm) : 0;
+            var AvdDaysOut = tripLogs.Count > 0 ? tripLogs.Average(t => t.DaysOut) : 0;
+
+            var FurtherstTrip = tripLogs.OrderByDescending(t => t.DistanceKm).FirstOrDefault();
+
+            var LongestTrip = tripLogs.OrderByDescending(r => r.DaysOut)
+                            .Select(r => new {                               
+                                DaysOff = r.DaysOut,
+                                CarBrand = r.CarBrand,
+                                CarModel = r.CarModel
+                            })
+                            .FirstOrDefault();
+            var MostTripsCount = tripLogs.GroupBy(c => c.CarId)
+                            .OrderByDescending(g => g.Count())
+                            .Select(g => new {
+                                CarId = g.Key,
+                                TripsCount = g.Count(),
+                                CarBrand = g.First().CarBrand,
+                                CarModel = g.First().CarModel
+                            })
+                            .FirstOrDefault();
+
+            return new TripLogStatsViewModel {
+                TripLogs = tripLogs,
+                SumTrips = tripLogs.Count,
+                TotalDistance = TotalDistance,
+                AvdDaysOut = AvdDaysOut,
+                AvgDistance = AverageDistanceKm,
+                FurtherstTrip = FurtherstTrip?.DistanceKm ?? 0,
+                FurtherstTripCarBrand = FurtherstTrip?.CarBrand,
+                FurtherstTripCarModel = FurtherstTrip?.CarModel,
+                LongestTrip = LongestTrip?.DaysOff ?? 0,
+                LongestTripCarBrand = LongestTrip?.CarBrand,
+                LongestTripCarModel = LongestTrip?.CarModel,
+                MostTripsCount = MostTripsCount?.TripsCount ?? 0,
+                MostTripsCarBrand = MostTripsCount?.CarBrand,
+                MostTripsCarModel = MostTripsCount?.CarModel,
+            };
+        }
+
         private TripLog DtoToModel(TripLogDTO triplogDto) {
             return new TripLog {
                 Id = triplogDto.Id,
                 StartDate = triplogDto.StartDate,
                 EndDate = triplogDto.EndDate,
+                DaysOut = (triplogDto.EndDate.DayNumber - triplogDto.StartDate.DayNumber + 1),
                 DistanceKm = triplogDto.DistanceKm,
                 Purpose = triplogDto.Purpose,
                 CarId = triplogDto.CarId,
@@ -154,6 +200,7 @@ namespace CarApp.Services {
                 Id = triplog.Id,
                 StartDate = triplog.StartDate,
                 EndDate = triplog.EndDate,
+                DaysOut = triplog.DaysOut,
                 DistanceKm = triplog.DistanceKm,
                 Purpose = triplog.Purpose,
                 CarId = triplog.CarId,

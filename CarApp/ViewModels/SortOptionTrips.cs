@@ -7,5 +7,7 @@
 
         EndDate = 3,
 
+        DaysOut = 4,
+
     }
 }

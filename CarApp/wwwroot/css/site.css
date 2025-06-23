@@ -15,19 +15,22 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Bebas Neue", sans-serif;
 }
 a {
-    color: darkcyan;
+    color: lightgrey;
     transition: color 0.3s ease, opacity 0.3s ease;
     font-family: "Montserrat", sans-serif;
+    text-decoration: none;
 }
+a:hover {
+        color: lightgrey;
+    }
+
 label {
     font-family: "Montserrat", sans-serif;
 }
 li {
     font-family: "Montserrat", sans-serif;
 }
-a:hover {
-        color: darkcyan;        
-    }
+
 body {
     font-size: 14px;
     margin: 0;
@@ -64,10 +67,11 @@ option {
         box-shadow: none;
         border-color: #725794;
 }
-    .form-check-input:checked {
+.form-check-input:checked {
         background-color: #725794;
         border-color: lightgray;
     }
+
 
 /*****NAVBAR*******/
 .navbar-toggler-icon {
@@ -106,7 +110,8 @@ option {
 .nav-link {
     color: lightgrey;
     transition: all 0.3s ease;
-    font-size: 17px
+    font-size: 17px;
+    font-family: "Syncopate", sans-serif;
 }
 .nav-link.active {
     font-weight: bold;
@@ -117,6 +122,7 @@ option {
     color: aliceblue;
 }
 
+/******CUSTOM*******/
 .input-frame {
     width: 300px;
     height: 500px;
@@ -142,6 +148,9 @@ option {
         box-shadow: 0 0 8px 0.15rem #40344a;
         color: lightgray;
     }
+.border-bottom{
+    border-bottom: 1px solid lightgrey
+}
 
 .btn-gradient {
     background: linear-gradient(to bottom, #37303b, #221f24);
@@ -149,7 +158,7 @@ option {
     font-size: 14px;
     transition: all 0.3s ease;
     border-top: 1px solid #6e5e7d;
-    position: relative;
+    /*position: relative;*/
     cursor: pointer;
     font-family: "Montserrat", sans-serif;
 }
@@ -178,7 +187,6 @@ option {
     transition: all 0.3s ease;
     border-top: 1px solid #6e5e7d;
     color: aquamarine;
-    position: relative;
     cursor: pointer;
     font-family: "Montserrat", sans-serif;
 }
@@ -191,14 +199,13 @@ option {
         border-top: 1px solid #6e5e7d;
         font-size: 15px;
         box-shadow: 0 0 8px 0.15rem rgba(127, 255, 212, 0.5);
-/*        opacity: 1;*/
     }
 
 .myFrame {
     border: 1px solid #6e5e7d;
     border-radius: 5px;
     box-shadow: 0 0px 25px rgba(0, 0, 0, 0.7);
-        background: radial-gradient(circle at bottom right, #2a2136 0%, #1d1724 60%, #0f0c12 100%);
+    background: radial-gradient(circle at bottom right, #2a2136 0%, #1d1724 60%, #0f0c12 100%);
 /*    background: radial-gradient(circle at bottom right, #473f52 0%, #1d1724 60%, #0f0c12 100%);*/
     padding: 15px;
     min-height: 100px;

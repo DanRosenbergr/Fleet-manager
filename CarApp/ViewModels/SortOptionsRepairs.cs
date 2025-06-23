@@ -9,6 +9,6 @@ namespace CarApp.ViewModels {
        
         Cost = 3,
         
-        DaysInService = 4
+        DaysInService = 4,
     }
 }

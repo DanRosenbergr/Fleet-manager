@@ -7,31 +7,13 @@
 	<div class="myFrame my-3">
 		<h3 class="mb-4">List of cars in your fleet</h3>
 		<div class="mb-1 d-flex flex-column flex-md-row justify-content-between">
+			<div class="mb-2 z-0">
+				<a class="btn btn-aqua btn-200w text-center z-0" asp-controller="Cars" asp-action="Create">
+					Add a new car
+				</a>	
+			</div>
 			
 			<div class="mb-2">
-				<form method="get">
-					<button type="submit" class="btn btn-aqua btn-200w text-center"	formaction="@Url.Action("Create", "Cars")">
-						Add a new car
-					</button>
-				</form>
-			</div>
-			<div class="mb-2">
-				<form method="get" asp-action="Search" class="d-flex gap-2 align-items-center">
-					<div>
-						<label for="search" class="form-label">Search:</label>
-					</div>
-					<div>
-						<input type="search" name="search" placeholder="brand" class="form-control" value="@Context.Request.Query["search"]" />
-					</div>
-					<div>
-						<button type="submit" class="btn btn-gradient btn-100w">Search</button>
-					</div>
-				</form>
-			</div>
-		</div>
-
-		<div class="mb-2 d-flex flex-column flex-lg-row justify-content-between">
-			<div class="">
 				<form method="get" asp-action="SearchByFuel" class="d-flex gap-2 align-items-center">
 					<div>
 						<label for="fuel" class="form-label">Fuel type:</label>
@@ -46,8 +28,23 @@
 					</div>
 				</form>
 			</div>
+		</div>
+		<div class="mb-2 d-flex flex-column flex-lg-row justify-content-between">
+			<div class="mb-2">
+				<form method="get" asp-action="Search" class="d-flex gap-2 align-items-center">
+					<div>
+						<label for="search" class="form-label">Search:</label>
+					</div>
+					<div>
+						<input type="search" name="search" placeholder="brand" class="form-control" value="@Context.Request.Query["search"]" />
+					</div>
+					<div>
+						<button type="submit" class="btn btn-gradient btn-100w">Search</button>
+					</div>
+				</form>
+			</div>
 
-			<div class="">
+			<div class="mb-2">
 				<form method="get" asp-action="OrderBy" class="d-flex flex-column flex-sm-row gap-2 ">
 					<div class="d-flex align-items-center gap-2">
 						<div>

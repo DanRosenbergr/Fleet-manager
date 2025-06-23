@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using CarApp.DTO;
 using CarApp.Models;
+using CarApp.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -101,7 +102,8 @@ namespace CarApp.Services {
         }
         // search by brand controller
         internal IEnumerable<CarDTO> GetByName(string search) {
-            var searchResults = _dbContext.Cars
+            var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+            var searchResults = _dbContext.Cars.Where(u => u.UserID == userId)
                 .Where(c => c.Brand.Contains(search) || c.Model.Contains(search))
                 .ToList();
           
@@ -124,7 +126,8 @@ namespace CarApp.Services {
         }
         // search by fuel controller
         internal IEnumerable<CarDTO> GetByFuel(FuelType fuel) {
-            return _dbContext.Cars
+            var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+            return _dbContext.Cars.Where(u => u.UserID == userId)
                 .Where(c => c.Fuel == fuel)
                 .Select(c => new CarDTO {
                     Id = c.Id,
@@ -141,7 +144,8 @@ namespace CarApp.Services {
         }
 
         internal IEnumerable<CarDTO> OrderBy(SortOptions sortOption, bool descending) {
-            var query = _dbContext.Cars.AsQueryable();
+            var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
+            var query = _dbContext.Cars.Where(u => u.UserID == userId).AsQueryable();
 
             switch (sortOption) {
                 case SortOptions.Brand:
@@ -172,5 +176,7 @@ namespace CarApp.Services {
                 NextMOT = c.NextMOT
             }).ToList();
         }
+
+       
     }
 }

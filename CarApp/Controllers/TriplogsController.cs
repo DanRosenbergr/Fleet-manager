@@ -16,13 +16,18 @@ namespace CarApp.Controllers {
         }
 
         public IActionResult Index() {
-            var allTriplogs = _triplogServices.GetAllTrips();
+            
             ViewBag.SortOptionsTrips = new SelectList(new List<SelectListItem> {
                 new SelectListItem { Value = "StartDate", Text = "Start Date" },
                 new SelectListItem { Value = "EndDate", Text = "End Date" },
+                new SelectListItem { Value = "DaysOut", Text = "Days out" },
                 new SelectListItem { Value = "DistanceKm", Text = "Distance (km)" }
             }, "Value", "Text");
-            return View(allTriplogs);
+
+            var allTriplogs = _triplogServices.GetAllTrips().ToList();
+            var model = _triplogServices.BuildTripsStats(allTriplogs);
+
+            return View(model);         
         }
 
         [HttpGet]
@@ -62,17 +67,19 @@ namespace CarApp.Controllers {
         //Order by selection
         public IActionResult OrderBy(SortOptionTrips sortOptionTrips, string sortDirection) {
             bool descending = sortDirection == "Desc";
-            var orderedTrips = _triplogServices.OrderBy(sortOptionTrips, descending);
+            var orderedTrips = _triplogServices.OrderBy(sortOptionTrips, descending).ToList();
 
             ViewBag.SortOptionsTrips = new SelectList(new List<SelectListItem> {
-                new SelectListItem { Value = "DistanceKm", Text = "Distance" },
                 new SelectListItem { Value = "StartDate", Text = "Start Date" },
-                new SelectListItem { Value = "EndDate", Text = "End Date" }
+                new SelectListItem { Value = "EndDate", Text = "End Date" },
+                new SelectListItem { Value = "DistanceKm", Text = "Distance" },               
+                new SelectListItem { Value = "DaysOut", Text = "Days out" },               
                 }, "Value", "Text", sortOptionTrips);
 
             ViewBag.SortDirection = sortDirection;
+            var model = _triplogServices.BuildTripsStats(orderedTrips);
 
-            return View("Index", orderedTrips);       
+            return View("Index", model);       
         }
     }
 }

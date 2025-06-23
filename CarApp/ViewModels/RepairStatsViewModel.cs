@@ -5,7 +5,7 @@ namespace CarApp.ViewModels {
 
         public List<RepairDTO> Repairs { get; set; }
 
-        // Fleet Statistiky
+        // Fleet Statistics
         public int TotalRepairs { get; set; }
         public decimal TotalCost { get; set; }
         public decimal AverageCost { get; set; }
@@ -18,7 +18,6 @@ namespace CarApp.ViewModels {
         public int LongestOff { get; set; }
         public string? LongestOffCarBrand { get; set; }
         public string? LongestOffCarModel { get; set; }
-
 
         public int MostRepairedCount { get; set; }
         public string? MostRepairedCarBrand { get; set; }

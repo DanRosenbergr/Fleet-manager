@@ -69,7 +69,7 @@ namespace CarApp.Controllers {
             // Naplnění seznamů
             car.Repairs = repairs;
             car.TripLogs = tripLogs;
-
+            
             return View(car);
         }
         // search by Brand or Name

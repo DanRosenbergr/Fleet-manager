@@ -20,6 +20,7 @@ namespace CarApp.Controllers {
                new SelectListItem { Value = "RepairDateStart", Text = "Start Date" },
                new SelectListItem { Value = "RepairDateEnd", Text = "End Date" },
                new SelectListItem { Value = "Cost", Text = "Cost" },
+               new SelectListItem { Value = "DaysInService", Text = "Days off" },
            }, "Value", "Text");
 
             var repairs = _repairService.GetAllRepairs().ToList(); // Returns List<RepairDto>  
@@ -70,7 +71,8 @@ namespace CarApp.Controllers {
             ViewBag.SortOptionsRepairs = new SelectList(new List<SelectListItem> {
                 new SelectListItem { Value = "RepairDateStart", Text = "Start Date" },
                 new SelectListItem { Value = "RepairDateEnd", Text = "End Date" },
-                new SelectListItem { Value = "Cost", Text = "Cost" },               
+                new SelectListItem { Value = "Cost", Text = "Cost" },
+                new SelectListItem { Value = "DaysInService", Text = "Days off" },
                 }, "Value", "Text", sortOptionRepair);
 
             ViewBag.sortDirection = sortDirection;

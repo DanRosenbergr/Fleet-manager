@@ -4,7 +4,7 @@
 @if (User.Identity.IsAuthenticated)
 {
 	<div class="container  d-flex justify-content-center my-3">
-		<div class="col-4 myFrame position-relative">
+		<div class="col-12 col-md-8 col-xl-4 myFrame position-relative">
 			<a asp-controller="Cars" asp-action="Details" asp-route-id="@Model.CarId" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
 				<i class="bi bi-x-lg"></i>
 			</a>

@@ -89,12 +89,12 @@ namespace CarApp.Services {
             repairToUpdate.Description = repairDto.Description;
             repairToUpdate.RepairDateStart = repairDto.RepairDateStart;
             repairToUpdate.RepairDateEnd = repairDto.RepairDateEnd;
+            repairToUpdate.DaysInService = (repairDto.RepairDateEnd.DayNumber - repairDto.RepairDateStart.DayNumber + 1);
             repairToUpdate.MileageAtRepair = repairDto.MileageAtRepair;
             repairToUpdate.Cost = repairDto.Cost;
             repairToUpdate.CarId = repairDto.CarId;
             await _dbContext.SaveChangesAsync();
         }           
-
 
         internal IEnumerable<RepairDTO> OrderBy(sortOptionRepairs sortOption, bool descending) {
             var userId = _userManager.GetUserId(_httpContextAccessor.HttpContext.User);
@@ -109,6 +109,9 @@ namespace CarApp.Services {
                     break;
                 case sortOptionRepairs.Cost:
                     query = descending ? query.OrderByDescending(r => r.Cost) : query.OrderBy(r => r.Cost);
+                    break;
+                case sortOptionRepairs.DaysInService:
+                    query = descending ? query.OrderByDescending(r => r.DaysInService) : query.OrderBy(r => r.DaysInService);
                     break;
                 default:
                     break;
@@ -186,6 +189,7 @@ namespace CarApp.Services {
                 Description = repair.Description,
                 RepairDateStart = repair.RepairDateStart,
                 RepairDateEnd = repair.RepairDateEnd,
+                DaysInService = repair.DaysInService,
                 MileageAtRepair = repair.MileageAtRepair,
                 Cost = repair.Cost,
                 CarId = repair.CarId
@@ -197,6 +201,7 @@ namespace CarApp.Services {
                 Description = repairDto.Description,
                 RepairDateStart = repairDto.RepairDateStart,
                 RepairDateEnd = repairDto.RepairDateEnd,
+                DaysInService = (repairDto.RepairDateEnd.DayNumber - repairDto.RepairDateStart.DayNumber + 1),
                 MileageAtRepair = repairDto.MileageAtRepair,
                 Cost = repairDto.Cost,
                 CarId = repairDto.CarId

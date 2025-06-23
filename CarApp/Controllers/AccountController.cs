@@ -29,14 +29,7 @@ namespace CarApp.Controllers {
         public async Task<IActionResult> Login(LoginViewModel login) {        
 
             if (ModelState.IsValid) {
-                AppUser userToLogin = await _userManager.FindByNameAsync(login.UserName);
-                //if (userToLogin != null) {
-                //    var signInResult = await _signInManager.PasswordSignInAsync(userToLogin,
-                //        login.Password, login.Remember, false);//zmena, pri pridani checkboxu(login.Remember)
-                //    if (signInResult.Succeeded) {
-                //        return Redirect(login.ReturnUrl ?? "/cars/index");
-                //    }
-                //}
+                AppUser userToLogin = await _userManager.FindByNameAsync(login.UserName);                
                 if (userToLogin == null) {
                     ModelState.AddModelError("", "User not found");
                 } else {
@@ -44,7 +37,7 @@ namespace CarApp.Controllers {
                         login.Password, login.Remember, false);
 
                     if (signInResult.Succeeded) {
-                        return Redirect(login.ReturnUrl ?? "/cars/index");
+                        return RedirectToAction("Index", "Cars"); ;
                     } else {
                         ModelState.AddModelError("", "Wrong password");
                     }
