@@ -13,7 +13,7 @@
         public int CarId { get; set; }
         public Car Car { get; set; }
 
-        public string? UserID { get; set; }  
-        //public AppUser User { get; set; }
+        public string? UserID { get; set; }
+      
     }
 }

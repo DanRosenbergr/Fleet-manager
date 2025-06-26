@@ -15,16 +15,16 @@
 
 					<input type="hidden" asp-for="CarId" />
 
-					<label asp-for="StartDate"></label>
+					<label asp-for="StartDate" class="form-label"></label>
 					<input type="date" asp-for="StartDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
 
-					<label asp-for="EndDate"></label>
+					<label asp-for="EndDate" class="form-label"></label>
 					<input type="date" asp-for="EndDate" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
 
-					<label asp-for="DistanceKm"></label>
+					<label asp-for="DistanceKm" class="form-label"></label>
 					<input type="number" asp-for="DistanceKm" class="form-control" />
 
-					<label asp-for="Purpose"></label>
+					<label asp-for="Purpose" class="form-label"></label>
 					<input type="text" asp-for="Purpose" class="form-control" />
 				</div>
 				<div class="d-flex justify-content-between">

@@ -4,12 +4,15 @@
 <div class="container">
 	<div class="d-flex justify-content-between col-12 myFrame my-3">		
 		<div>
-			<h3>@Model.Brand @Model.Model </h3>
-			<p>@Model.Year</p>
+			<div class="d-flex gap-4">
+				<h3>@Model.Brand @Model.Model </h3>
+				<p>@Model.Year</p>
+			</div>			
+			<p>License plate: @Model.LicensePlate</p>
 			@* <p>Car ID: @Model.Id</p> *@
 		</div>
 		<form method="get" asp-action="Index">
-			<button type="submit" class="btn btn-gradient btn-200w">Back to cars list</button>
+			<button type="submit" class="btn btn-gradient btn-200w">Back to vehicle list</button>
 		</form>
 	</div>
 
@@ -66,10 +69,7 @@
 							}
 						</tbody>
 					</table>
-
-				</div>
-
-				@* @await Html.PartialAsync("_TripLogsPartial", Model.TripLogs) *@
+				</div>				
 			</div>
 			
 			<div class="myFrame flex-fill mb-3">

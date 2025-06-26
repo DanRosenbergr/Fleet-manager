@@ -332,6 +332,7 @@ __pycache__/
 *.odx.cs
 *.xsd.cs
 
+
 # OpenCover UI analysis results
 OpenCover/
 
@@ -362,3 +363,9 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 /CarApp/Migrations
+
+# Ignoruj lokální a vývojové konfigy
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.json
+appsettings.json

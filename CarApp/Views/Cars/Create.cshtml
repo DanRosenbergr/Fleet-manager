@@ -8,39 +8,39 @@
 			<a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
 				<i class="bi bi-x-lg"></i>
 			</a>
-			<h3 class="text-center">Create a new Car</h3>
+			<h3 class="text-center">Create a new vehicle</h3>
 			<form asp-action="Create" method="post" asp-controller="Cars">
 				<div class="form-group">					
 					<div class="mb-2">
-						<label asp-for="Brand"></label>
+						<label asp-for="Brand" class="form-label"></label>
 						<input type="text" asp-for="Brand" class="form-control" />
 					</div>
 					<div class="mb-2">
-						<label asp-for="Model"></label>
+						<label asp-for="Model" class="form-label"></label>
 						<input type="text" asp-for="Model" class="form-control" />
 					</div>
 					<div class ="mb-2">
-						<label asp-for="Year">Year of manufacture:</label>
+						<label asp-for="Year" class="form-label">Year of manufacture:</label>
 						<input type="number" asp-for="Year" class="form-control" />
 					</div>
 					<div class="mb-2">
-						<label asp-for="Color">Color:</label>
+						<label asp-for="Color" class="form-label">Color:</label>
 						<input type="text" asp-for="Color" class="form-control" />
 					</div>
 					<div class="mb-2">
-						<label asp-for="LicensePlate">License plate:</label>
+						<label asp-for="LicensePlate" class="form-label">License plate:</label>
 						<input type="text" asp-for="LicensePlate" class="form-control" />
 					</div>
 					<div class="mb-2">
-						<label asp-for="Mileage">Current mileage:</label>
+						<label asp-for="Mileage" class="form-label">Current mileage:</label>
 						<input type="number" asp-for="Mileage" class="form-control" />
 					</div>
 					<div class="mb-2">
-						<label asp-for="Fuel">Fuel type:</label>
+						<label asp-for="Fuel" class="form-label">Fuel type:</label>
 						<select asp-for="Fuel" class="form-control" asp-items="ViewBag.FuelTypes"></select>
 					</div>
 					<div class="mb-2">
-						<label asp-for="NextMOT">Next MOT:</label>
+						<label asp-for="NextMOT" class="form-label">Next MOT:</label>
 						<input type="date" asp-for="NextMOT" class="form-control" />
 					</div>
 				</div>

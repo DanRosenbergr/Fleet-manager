@@ -8,7 +8,7 @@
 			<a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
 				<i class="bi bi-x-lg"></i>
 			</a>
-			<h3 class="text-center">Edit Car</h3>
+			<h3 class="text-center">Edit vehicle</h3>
 			<form asp-action="Edit" method="post" asp-controller="Cars">
 				<input type="hidden" asp-for="Id" />
 				<div class="mb-2">
@@ -45,7 +45,7 @@
 				</div>
 				<div class="d-flex justify-content-between">
 					<input class="btn btn-gradient text-success" type="submit" value="Update" />
-					<a class="btn btn-gradient" asp-action="Index">Back to list</a>
+					<a class="btn btn-gradient btn-100w" asp-action="Index">Back</a>
 				</div>
 			</form>
 		</div>

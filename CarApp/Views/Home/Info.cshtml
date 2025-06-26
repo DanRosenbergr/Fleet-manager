@@ -1,31 +1,81 @@
 ﻿<div class="container">
-	<h1 class="text-center my-4 display-4">How to</h1>
+	<h1 class="text-center my-4 display-4">How to Use the Fleet Manager</h1>
 
-	<div class="myFrame mb-3">
-        <h3>Explore the App Without Registration</h3>
-        <p>
-            For demonstration purposes, this page allows you to explore the full functionality of the application
-            using a pre-configured demo account. You can log in quickly with the provided demo credentials, which will
-            automatically fill in the necessary login information. Once logged in, you can freely navigate through the 
-            entire app and test all available features without the need to register or enter any personal data. 
-            This includes viewing records, adding or editing entries, sorting data, and trying out all key components
-            of the interface. Feel free to explore and interact with the app as if you were a regular user.
-        </p>
+	<div class="myFrame d-flex  flex-column flex-lg-row mb-3 ">
+		<div class="col-12 col-lg-6">
+			<h3>Explore the App Without Registration</h3>
+			<p class="me-4">
+				This demo lets you explore all app features using a pre-filled test account.
+				Log in quickly without registration and try viewing, adding, or editing records,
+				sorting data, and navigating the full interface — just like a real user.
+			</p>
+		</div>
+		
+		<div class="myFrame col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
+			<h5>No Sign-Up Needed </h5>
+			<div class="">				
+				<form method="post" asp-controller="Account" asp-action="login">						
+					<input type="hidden" name="DemoUser" value="true" />
+					<button type="submit" class="btn btn-gradient btn-200w btn-aqua">
+						Try me
+					</button>
+				</form>
+			</div>
+		</div>
 	</div>
-    <div class="myFrame ">
-        <h3>No Sign-Up Needed – Just Try It</h3>
-        <div class="d-flex justify-content-around align-content-center">
-            <div>
-                <p>login: tryMe </p>
-                <p>password: tryMe1234 </p>
-            </div>
-            <form method="get" action="@Url.Action("Login", "Account")">
-                <input type="hidden" name="ReturnUrl" value="/" />
-                <input type="hidden" name="demoUser" value="true" />
-                <button type="submit" class="btn btn-gradient btn-200w">
-                    Log in
-                </button>
-            </form>
-        </div>       
-    </div>
+
+	
+
+	<div class="myFrame mb-5">
+		<h3>1. Register and Log In</h3>
+		<p>
+			To start managing your vehicles, you need to create an account. After successful registration,
+			log in with your credentials to access your private dashboard.
+		</p>
+		<ul>
+			<li>Secure registration and login</li>
+			<li>Your data is private – only you can see it</li>
+			<li>You can change your username or password anytime</li>
+		</ul>
+	</div>
+
+	<div class="myFrame mb-5">
+		<h3>2. Add and Manage Vehicles</h3>
+		<p>
+			After logging in, go to the <strong>Your Fleet</strong> section to add your vehicles. You can enter brand, model,
+			year, license plate, mileage, and more. You can edit or delete vehicles anytime.
+		</p>
+		<ul>
+			<li>Add multiple vehicles</li>
+			<li>Edit or remove existing vehicles</li>
+			<li>Search and sort your vehicle list</li>
+		</ul>
+	</div>
+
+	<div class="myFrame mb-5">
+		<h3>3. Track Your Trips</h3>
+		<p>
+			For each vehicle, you can log trips, including route details, dates, and distance traveled. This helps
+			you track usage and plan maintenance.
+		</p>
+		<ul>
+			<li>Log trip date, route, distance, and purpose</li>
+			<li>Review trip history per vehicle</li>
+			<li>Access statistics: total km, longest trip, etc.</li>
+		</ul>
+	</div>
+
+	
+
+	<div class="myFrame mb-5">
+		<h3>5. Manage Your Profile</h3>
+		<p>
+			In the profile section, you can update your username and password securely. Your account is protected and only you have access to your data.
+		</p>
+		<ul>
+			<li>Change your username</li>
+			<li>Update your password</li>
+			<li>Stay in control of your data</li>
+		</ul>
+	</div>
 </div>

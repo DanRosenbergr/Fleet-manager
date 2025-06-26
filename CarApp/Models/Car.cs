@@ -22,6 +22,7 @@
         public ICollection<TripLog> TripLogs { get; set; } = new List<TripLog>();
 
         public string UserID { get; set; }
+      
 
     }
 }

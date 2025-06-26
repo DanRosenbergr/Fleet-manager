@@ -1,24 +1,67 @@
 ﻿
 <div class="container">
-    
-        <h1 class="display-4 my-3 text-center">Welcome to fleet manager</h1>
-        <div class="myFrame mb-5">
-            <h5>Manage Your Vehicles in One Place</h5>
-            <p>
-                Our application provides a clear and organized way to keep track of all the vehicles in your fleet.
-                Users can easily add, edit, or remove individual cars, including key details such as make, model, year,
-                and license plate. Each user has access only to their own data – securely and privately.
-            </p>
-        </div>
-        <div class="myFrame mb-5">
-            <h5>Detailed Records of Repairs and Trips</h5>
-            <p>
-                For every vehicle, you can maintain a detailed history of repairs and trip logs. The repairs section
-                allows you to track maintenance, part replacements, and inspections. Trip records help you monitor routes,
-                trip purposes, and mileage. Everything is designed to give you full control and insight into your fleet's
-                condition and usage.
-            </p>
-        </div>
-    
+
+	<h1 class="display-4 my-3 text-center">Welcome to fleet manager</h1>
+	<div class=" d-flex justify-content-center my-5">				
+			<a class="btn btn-aqua btn-200w text-center " asp-controller="Account" asp-action="register">Try it for FREE</a>			
+	</div>
+	<div class="myFrame mb-5 d-flex align-content-center">
+		<div class="m-3">
+			<h3>Manage Your Vehicles in One Place</h3>
+			<p>
+				Our application provides a clear and organized way to keep track of all the vehicles in your fleet.
+				Users can easily add, edit, or remove individual cars, including key details such as make, model, year,
+				and license plate. Each user has access only to their own data – securely and privately.
+				You also get insights into the most used and most maintained vehicles in your fleet.
+			</p>
+			<ul>
+				<li>Manage your vehicle fleet in one place</li>
+				<li>Search and sort vehicles by model, brand, or license plate</li>
+				<li>Register and log in with secure credentials</li>
+				<li>See which vehicle is used most often or requires the most maintenance</li>
+				<li>Simple and clean user interface optimized for all devices</li>
+			</ul>
+		</div>
+		<img src="/images/home1.png" alt="car-fleet" class="d-none d-xl-block" />
+
+	</div>
+	<div class="myFrame mb-5 d-flex align-content-center">
+		<div class="m-3">
+			<h3>Track Every Trip with Ease</h3>
+			<p>
+				Keep detailed logs of every trip taken with your vehicles. Record trip dates, purposes, distances, and durations.
+				The application also provides trip-based statistics such as average distance per trip, longest journey, and
+				the vehicle with the most trips.
+			</p>
+			<ul>
+				<li>Log trips with date, distance, and purpose</li>				
+				<li>View trip history for each vehicle</li>
+				<li>Filter and review trip records by date or car</li>
+				<li>Monitor total and average kilometers driven</li>
+				<li>Find your longest or furthest trip</li>
+				<li>See which car is most frequently used for travel</li>
+				<li>Track trip duration and frequency over time</li>
+			</ul>
+		</div>
+		<img src="/images/home2.png" alt="trips" class="d-none d-xl-block" />
+	</div>
+	<div class="myFrame mb-5 d-flex align-content-center">
+		<div class="m-3">
+			<h3>Stay on Top of Vehicle Maintenance</h3>
+			<p>
+				Log every repair and maintenance task done on your vehicles — from oil changes to major part replacements.
+				Each repair record is tied to a specific vehicle and includes dates, mileage, and descriptions to help you monitor 
+				technical condition over time.The app summarizes repair costs, highlights the most expensive cars to maintain, and tracks downtime due to repairs.				
+			</p>
+			<ul>
+				<li>Log repairs with cost, service time, and description</li>
+				<li>View total and average repair costs per vehicle</li>
+				<li>Identify cars with longest service times</li>
+				<li>Find out which vehicle is the most costly to maintain</li>
+				<li>Filter repairs by vehicle or date</li>
+			</ul>
+		</div>
+		<img src="/images/home3.png" alt="repairs" class="d-none d-xl-block" />
+	</div>
 </div>
 

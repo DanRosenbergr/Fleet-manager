@@ -2,5 +2,6 @@
 
 namespace CarApp.Models {
     public class AppUser:IdentityUser {
+       
     }
 }

@@ -11,6 +11,6 @@ namespace CarApp {
 
         public DbSet<Car> Cars { get; set; }
         public DbSet<Repair> Repairs { get; set; }
-        public DbSet<TripLog> TripLogs { get; set; }
+        public DbSet<TripLog> TripLogs { get; set; }     
     }
 }

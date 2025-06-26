@@ -72,13 +72,12 @@ namespace CarApp.Controllers {
             
             return View(car);
         }
+
         // search by Brand or Name
         public IActionResult Search(string search) {
             if (string.IsNullOrEmpty(search)) {
                 return RedirectToAction("Index");
-            }
-            ViewBag.FuelTypes = new SelectList(Enum.GetValues(typeof(FuelType)));
-            ViewBag.SortOptions = new SelectList(Enum.GetValues(typeof(SortOptions)));
+            }           
             var searchResults = _carServices.GetByName(search);
             return View("Index", searchResults);
         }

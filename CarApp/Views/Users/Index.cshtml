@@ -1,0 +1,77 @@
+﻿@using CarApp.ViewModels
+
+@model IEnumerable<UsersViewModel> 
+<div class="container d-flex gap-3"> 
+	<div class="myFrame my-3 col-12 col-md-3">
+		<div class="myframe my-3">
+			<h3>Users management</h3>
+			<div class="mb-5">
+				<a class="btn btn-aqua btn-200w text-center z-0" asp-controller="users" asp-action="createuser">
+					Add user
+				</a>
+			</div>
+			<div>
+				<form method="get" asp-action="search" class=" gap-2 align-items-center">
+					<div>
+						<label for="search" class="form-label mb-2">Search:</label>
+					</div>
+					<div>
+						<input type="search" name="search" placeholder="user" class="form-control mb-3" value="@Context.Request.Query["search"]" />
+					</div>
+					<div>
+						<button type="submit" class="btn btn-gradient btn-100w">Search</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="myFrame my-3 col-12 col-md-9">
+		<div class="myframe my-3 table-responsive">
+			<h3>List of users</h3>
+			<div class="tableheight">
+				<table class="table table-striped">
+					<thead class="tablehead">
+						<tr>
+							<th style="width: 60%;">name</th>
+							<th style="width: 20%;">Role</th>
+							<th style="width: 20%;">actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr>
+								<td>@item.UserName</td>
+								<td>@item.Role</td>
+								<td>
+									<div class="d-flex gap-1">
+										<form method="get">
+											<button type="submit"
+													class="btn btn-gradient btn-sm text-success"
+													asp-action="edit"
+													asp-route-id="@item.Id"
+													onclick="event.stoppropagation();">
+												<i class="bi bi-pencil"></i>
+											</button>
+										</form>
+
+										<form method="post" onsubmit="return confirm('are you sure you want to delete this user?');">
+											<button type="submit"
+													class="btn btn-gradient btn-sm text-danger"
+													asp-action="delete"
+													asp-route-id="@item.Id"
+													onclick="event.stoppropagation();">
+												<i class="bi bi-trash"></i>
+											</button>
+										</form>
+									</div>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	

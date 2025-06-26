@@ -15,8 +15,8 @@ builder.Services.AddControllersWithViews();
 
 // add db context connection string
 builder.Services.AddDbContext<AppDbContext>(options => {
-    //options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppDbConnection"));
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppMonsterAPIConnection"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppDbConnection"));
+    //options.UseSqlServer(builder.Configuration.GetConnectionString("CarAppMonsterAPIConnection"));
 });
 
 //adding to Dependecy Injection container

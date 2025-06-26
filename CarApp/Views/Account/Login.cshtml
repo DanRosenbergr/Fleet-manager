@@ -1,11 +1,5 @@
 ﻿@model LoginViewModel
-@{
-	if (Context.Request.Query["demoUser"] == "true")
-	{
-		Model.UserName = "tryMe";
-		Model.Password = "tryMe1234";
-	}
-}
+
 <div class="container d-flex justify-content-center my-3">
 	<div class="input-frame position-relative">
 		<a asp-controller="home" asp-action="index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="back">
@@ -14,25 +8,20 @@
 		<div class="d-flex flex-column align-content-center">
 			<h3 class="text-center">Log in</h3>
 			<div class="text-danger" asp-validation-summary="All"></div>
-			<form asp-action="Login" method="post" autocomplete="off">
-
-				<input type="hidden" asp-for="ReturnUrl"/>
-
+			<form asp-action="Login" method="post" autocomplete="off">		
 				<div>
-					<label asp-for="UserName"></label>
+					<label asp-for="UserName" class="form-label"></label>
 					<input asp-for="UserName" class="form-control" />
 				</div>
 				<div>
-					<label asp-for="Password"></label>
+					<label asp-for="Password" class="form-label"></label>
 					<input type="password" asp-for="Password" class="form-control mb-3" />
 				</div>
 				<div class="form-check">
 					<input class="form-check-input" type="checkbox" asp-for="Remember" id="rememberMe">
 					<label class="form-check-label" for="rememberMe">Remember me</label>
 				</div>
-				<button class="btn btn-gradient w-100 mb-5 mt-2" type="submit">Log In</button>
-				
-				
+				<button class="btn btn-gradient w-100 mb-5 mt-2" type="submit">Log In</button>						
 			</form>
 			<p>No account?</p>
 			<a asp-controller="Account" asp-action="Register" class="btn btn-gradient btn-aqua w-100">Sign in</a>

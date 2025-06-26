@@ -11,8 +11,6 @@ namespace CarApp.ViewModels {
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        public string? ReturnUrl { get; set; }
-
         public bool Remember { get; set; }
 
         public bool DemoUser { get; set; }

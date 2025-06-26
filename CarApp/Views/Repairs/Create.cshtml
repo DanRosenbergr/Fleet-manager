@@ -15,19 +15,19 @@
 					<input type="hidden" asp-for="Id" />
 					<input type="hidden" asp-for="CarId" />
 
-					<label asp-for="RepairDateStart"></label>
+					<label asp-for="RepairDateStart" class="form-label"></label>
 					<input type="date" asp-for="RepairDateStart" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
 
-					<label asp-for="RepairDateEnd"></label>
+					<label asp-for="RepairDateEnd" class="form-label"></label>
 					<input type="date" asp-for="RepairDateEnd" class="form-control" value="@DateTime.Today.ToString("yyyy-MM-dd")" />
 
-					<label asp-for="Description"></label>
+					<label asp-for="Description" class="form-label"></label>
 					<textarea asp-for="Description" class="form-control"></textarea>
 
-					<label asp-for="MileageAtRepair"></label>
+					<label asp-for="MileageAtRepair" class="form-label"></label>
 					<input type="number" asp-for="MileageAtRepair" class="form-control" />
 
-					<label asp-for="Cost"></label>
+					<label asp-for="Cost" class="form-label"></label>
 					<input type="number" asp-for="Cost" class="form-control" />
 				</div>
 				<div class="d-flex justify-content-between">
