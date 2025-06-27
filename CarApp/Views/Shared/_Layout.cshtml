@@ -25,16 +25,16 @@
 <body>
 	<div class="mainWrapper">
 		<header class="d-flex align-items-center justify-content-between">
-			<nav class="navbar navbar-expand-md navbar-toggleable-md ms-3">
+			<nav class="navbar navbar-expand-lg navbar-toggleable-lg ms-3">
 				<div>
-					<a class="navbar-brand d-none d-md-block" asp-area="" asp-controller="Home" asp-action="Index">Fleet manager</a>
+					<a class="navbar-brand d-none d-lg-block textAqua" asp-area="" asp-controller="Home" asp-action="Index">Fleet manager</a>
 					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
 							aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
 				</div>
 
-				<div class="navbar-collapse collapse">
+				<div class="navbar-collapse collapse position-relative">
 					<ul class="navbar-nav d-flex justify-content-evenly mx-auto w-100">
 						<li class="mx-1">
 							<a class="nav-link  @(currentController == "Home" && currentAction == "Index" ? "active" : "")"
@@ -74,7 +74,7 @@
 						<div class="">
 							<div class="d-flex align-items-center justify-content-between me-3">
 								<div class="me-3">
-									<p class="mb-0">Logged-in:  @User.Identity.Name</p>
+									<p class="mb-0">Logged-in:  @(User.Identity?.Name?.StartsWith("tryMe-") == true? "Demo account" : @User.Identity.Name)</p>
 								</div>
 								<div class="">
 									<a class="btn btn-gradient text-success" asp-controller="Account" asp-action="EditProfile"><i class="bi bi-pencil"></i></a>

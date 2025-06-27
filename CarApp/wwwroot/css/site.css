@@ -18,6 +18,10 @@ img{
     height: 300px;
     width: auto;
 }
+.img-small {
+    height: 100px;
+    width: auto;
+}
 a {
     color: lightgrey;
     transition: color 0.3s ease, opacity 0.3s ease;
@@ -27,6 +31,7 @@ a {
 a:hover {
         color: lightgrey;
     }
+
 
 label {
     font-family: "Montserrat", sans-serif;
@@ -39,10 +44,8 @@ body {
     font-size: 14px;
     margin: 0;
     height: 100vh;
-    background: radial-gradient( circle, #2a2136 0%, /* světlejší střed (tmavě fialová) */
-    #1d1724 50%, /* plynulý přechod */
-    #0f0c12 100% /* velmi tmavý fialový okraj */
-    );
+    background: radial-gradient(circle, #423d46 0%, #29252b 50%, #121113 100%);
+    /*    background: radial-gradient( circle, #2a2136 0%, #1d1724 50%, #0f0c12 100%);*/
     color: lightgrey;
 }
 .main {
@@ -155,8 +158,8 @@ option {
 .border-bottom{
     border-bottom: 1px solid lightgrey
 }
-.form-label{
-    opacity: 0.7;
+.form-label {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .btn-gradient {
@@ -212,8 +215,9 @@ option {
     border: 1px solid #6e5e7d;
     border-radius: 5px;
     box-shadow: 0 0px 25px rgba(0, 0, 0, 0.7);
-    background: radial-gradient(circle at bottom right, #2a2136 0%, #1d1724 60%, #0f0c12 100%);
-/*    background: radial-gradient(circle at bottom right, #473f52 0%, #1d1724 60%, #0f0c12 100%);*/
+    background: radial-gradient(circle at bottom right, #423d46 0%, #29252b 50%, #201e21 100%);
+    /*    background: radial-gradient(circle at bottom right, #2a2136 0%, #1d1724 60%, #0f0c12 100%);*/
+
     padding: 15px;
     min-height: 100px;
 }
@@ -232,6 +236,9 @@ option {
     border: 1px solid #6e5e7d;
     border-radius: 5px;
     padding: 5px;
+}
+.textAqua {
+    color: #449184
 }
 
 /******TABLE*******/

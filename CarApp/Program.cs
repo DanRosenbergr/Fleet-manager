@@ -24,6 +24,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>().AddEntityFrameworkStores<A
 builder.Services.AddScoped<CarService>();
 builder.Services.AddScoped<TriplogService>();
 builder.Services.AddScoped<RepairService>();
+builder.Services.AddScoped<DemoDataService>();
 builder.Services.Configure<IdentityOptions>(options => {
     options.Password.RequireDigit = true;
     options.Password.RequireUppercase = false;

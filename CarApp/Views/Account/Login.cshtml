@@ -1,10 +1,10 @@
 ﻿@model LoginViewModel
 
 <div class="container d-flex justify-content-center my-3">
-	<div class="input-frame position-relative">
-		<a asp-controller="home" asp-action="index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="back">
-			<i class="bi bi-x-lg"></i>
-		</a>
+	<div class="myFrame col-12 col-md-6 col-xl-4">
+		@* <a asp-controller="home" asp-action="index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="back"> *@
+		@* 	<i class="bi bi-x-lg"></i> *@
+		@* </a> *@
 		<div class="d-flex flex-column align-content-center">
 			<h3 class="text-center">Log in</h3>
 			<div class="text-danger" asp-validation-summary="All"></div>
@@ -24,7 +24,11 @@
 				<button class="btn btn-gradient w-100 mb-5 mt-2" type="submit">Log In</button>						
 			</form>
 			<p>No account?</p>
-			<a asp-controller="Account" asp-action="Register" class="btn btn-gradient btn-aqua w-100">Sign in</a>
+			<a asp-controller="Account" asp-action="Register" class="btn btn-gradient btn-aqua w-100 mb-4">Register</a>
+			<div class="d-flex justify-content-end">
+				<a class="btn btn-gradient btn-100w" asp-controller="home" asp-action="Index">Back</a>
+			</div>
+
 		</div>		
 	</div>
 </div>

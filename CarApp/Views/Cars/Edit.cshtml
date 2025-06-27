@@ -4,10 +4,10 @@
 @if (User.Identity.IsAuthenticated)
 {
 	<div class="container d-flex justify-content-center my-3">
-		<div class="col-12 col-md-8 col-xl-4 myFrame position-relative">
-			<a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
+		<div class="col-12 col-md-8 col-xl-4 myFrame">
+			@* <a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
 				<i class="bi bi-x-lg"></i>
-			</a>
+			</a> *@
 			<h3 class="text-center">Edit vehicle</h3>
 			<form asp-action="Edit" method="post" asp-controller="Cars">
 				<input type="hidden" asp-for="Id" />
@@ -44,13 +44,15 @@
 					<input asp-for="NextMOT" type="date" class="form-control" />
 				</div>
 				<div class="d-flex justify-content-between">
-					<input class="btn btn-gradient text-success" type="submit" value="Update" />
-					<a class="btn btn-gradient btn-100w" asp-action="Index">Back</a>
+					<input class="btn btn-gradient btn-100w text-success" type="submit" value="Update" />
+					<div class="d-flex justify-content-end">
+						<a class="btn btn-gradient btn-100w" asp-action="Index">Back</a>
+					</div>
 				</div>
 			</form>
 		</div>
 	</div>
-		
+
 }
 
 

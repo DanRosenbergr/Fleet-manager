@@ -1,4 +1,5 @@
 ﻿using CarApp.Models;
+using CarApp.Services;
 using CarApp.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -9,17 +10,18 @@ namespace CarApp.Controllers {
     public class AccountController : Controller {
 
         UserManager<AppUser> _userManager;
-        SignInManager<AppUser> _signInManager;        
+        SignInManager<AppUser> _signInManager;
+        DemoDataService _demoDataService; //demo
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager) {
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, DemoDataService demoDataService) {
             _userManager = userManager;
-            _signInManager = signInManager;           
+            _signInManager = signInManager;
+            _demoDataService = demoDataService;//demo
         }
 
         [AllowAnonymous]
         public IActionResult Login() {
-            LoginViewModel model = new LoginViewModel();
-            //model.ReturnUrl = returnUrl;
+            LoginViewModel model = new LoginViewModel();           
             return View(model);
         }
 
@@ -28,6 +30,7 @@ namespace CarApp.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel login, bool demoUser) {
 
+            //demo data
             if (demoUser) {
                 var demoUserName = "tryMe";
                 var demoPassword = "tryMe1234";
@@ -67,6 +70,14 @@ namespace CarApp.Controllers {
 
 
         public async Task<IActionResult> Logout() {
+
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null && user.UserName.StartsWith("tryMe-")) {
+                // Smazat data
+                await _demoDataService.CleanupDemoDataAsync(user.Id);
+                await _userManager.DeleteAsync(user);
+            }
+
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
@@ -119,13 +130,12 @@ namespace CarApp.Controllers {
                         ModelState.AddModelError("", error.Description);
                     return View(model);
                 }
-                
+                TempData["Message"] = "Password updated successfully.";
             }            
             //successfull change login again
             await _signInManager.RefreshSignInAsync(user);
 
-            TempData["Message"] = "Profile updated successfully.";
-            return RedirectToAction("EditProfile");
+            return RedirectToAction(nameof(EditProfile));
         }
 
         [HttpGet]
@@ -151,6 +161,31 @@ namespace CarApp.Controllers {
                 ModelState.AddModelError("", error.Description);
             }
             return View(model);
+        }
+
+        //Demo Account
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LoginAsDemo() {
+
+            var demoSuffix = Guid.NewGuid().ToString().Substring(0, 8);
+            var demoUsername = $"tryMe-{demoSuffix}";
+            var demoPassword = "Demo123!";
+
+            var demoUser = new AppUser {
+                UserName = demoUsername,               
+            };
+
+            var result = await _userManager.CreateAsync(demoUser, demoPassword);
+            if (!result.Succeeded) return RedirectToAction("Login");
+                        
+            await _userManager.AddToRoleAsync(demoUser, "User");
+           
+            await _demoDataService.SeedDemoDataAsync(demoUser.Id);
+
+            await _signInManager.PasswordSignInAsync(demoUser.UserName, demoPassword, isPersistent: false, false);
+            return RedirectToAction("Index", "Cars");
         }
 
     }

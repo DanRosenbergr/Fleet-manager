@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace CarApp.ViewModels {
-    public class ManageUserViewModel {
-
-        [Required]        
+    public class CreateUserViewModel {
+        [Required]
         public string UserName { get; set; }
 
         [Required]

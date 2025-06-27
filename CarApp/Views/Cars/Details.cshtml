@@ -4,12 +4,13 @@
 <div class="container">
 	<div class="d-flex justify-content-between col-12 myFrame my-3">		
 		<div>
-			<div class="d-flex gap-4">
-				<h3>@Model.Brand @Model.Model </h3>
-				<p>@Model.Year</p>
-			</div>			
-			<p>License plate: @Model.LicensePlate</p>
-			@* <p>Car ID: @Model.Id</p> *@
+			<div class="d-flex gap-4 align-items-baseline">
+				<h3 class="mb-0">@Model.Brand @Model.Model</h3>
+				<p class="mb-0">@Model.Year</p>
+			</div>
+			<p class="mb-1">License plate: <strong>@Model.LicensePlate</strong></p>
+			<p class="mb-1">Mileage: <strong>@Model.Mileage.ToString("N0") km</strong></p>
+			<p class="">Below you'll find a complete overview of this vehicle's trip history and repair records. You can add, edit or delete entries at any time.</p>
 		</div>
 		<form method="get" asp-action="Index">
 			<button type="submit" class="btn btn-gradient btn-200w">Back to vehicle list</button>

@@ -1,68 +1,73 @@
 ﻿@model EditProfileViewModel
 
 @{
-    var isDemoUser = User.Identity?.Name == "tryMe";
+	var isDemoUser = User.Identity?.Name?.StartsWith("tryMe-") == true;
 }
 @if (User.Identity.IsAuthenticated)
 {
-    @if (isDemoUser)
-    {
-        <div class="container d-flex justify-content-center">
-            <div class="myFrame col-12 col-lg-6 mt-4 d-flex flex-column justify-content-center align-items-center">
-                <p class="text-danger mt-3 text-center">Demo account cannot be edited.</p>
-                <a class="btn btn-gradient btn-100w" asp-controller="cars" asp-action="Index">Back</a>
-            </div>            
-        </div>        
-    }
-    else
-    {    
-    <div class="container d-flex justify-content-center my-3">
-        <div class="col-12 col-md-8 col-xl-4 myFrame position-relative">
-            <a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
-                <i class="bi bi-x-lg"></i>
-            </a>
-            <h3>Edit Profile</h3>
+	@if (isDemoUser)
+	{
+		<div class="container d-flex justify-content-center">
+			<div class="myFrame col-12 col-lg-6 mt-4 d-flex flex-column justify-content-center align-items-center">
+				<p class="text-danger mt-3 text-center">Demo account cannot be edited.</p>
+				<a class="btn btn-gradient btn-100w" asp-controller="cars" asp-action="Index">Back</a>
+			</div>
+		</div>
+	}
+	else
+	{
+		<div class="container d-flex justify-content-center my-3">
+			<div class="col-12 col-md-8 col-xl-4 myFrame position-relative">
+				<a asp-controller="Cars" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
+					<i class="bi bi-x-lg"></i>
+				</a>
+				<h3>Edit Profile</h3>
 
-            @if (TempData["Message"] != null)
-            {
-                <div class="alert alert-success">@TempData["Message"]</div>
-            }
+				@if (TempData["Message"] != null || TempData["UserNameMessage"] != null)
+				{
+					<div class="text-danger text-center">
+						@TempData["Message"] @TempData["UserNameMessage"]
+					</div>
+				}
 
-            <form asp-action="EditProfile" method="post">
-                <div class="form-group">
-                        <label asp-for="UserName" class="form-label"></label>
-                    <input asp-for="UserName" class="form-control" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
-                </div>
+				<div asp-validation-summary="All" class="text-danger"></div>
+				<form asp-action="EditProfile" method="post">
+					<div class="form-group">
+						<label asp-for="UserName" class="form-label"></label>
+						<input asp-for="UserName" class="form-control" />
+						<span asp-validation-for="UserName" class="text-danger"></span>
+					</div>
 
-                <div class="form-group">
-                        <label asp-for="CurrentPassword" class="form-label"></label>
-                    <input asp-for="CurrentPassword" class="form-control" />
-                    <span asp-validation-for="CurrentPassword" class="text-danger"></span>
-                </div>
+					<div class="form-group">
+						<label asp-for="CurrentPassword" class="form-label"></label>
+						<input asp-for="CurrentPassword" class="form-control" />
+						<span asp-validation-for="CurrentPassword" class="text-danger"></span>
+					</div>
 
-                <div class="form-group">
-                        <label asp-for="NewPassword" class="form-label"></label>
-                    <input asp-for="NewPassword" class="form-control" />
-                    <span asp-validation-for="NewPassword" class="text-danger"></span>
-                </div>
+					<div class="form-group">
+						<label asp-for="NewPassword" class="form-label"></label>
+						<input asp-for="NewPassword" class="form-control" />
+						<span asp-validation-for="NewPassword" class="text-danger"></span>
+					</div>
 
-                <div class="form-group">
-                        <label asp-for="ConfirmNewPassword" class="form-label"></label>
-                    <input asp-for="ConfirmNewPassword" class="form-control" />
-                    <span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
-                </div>
-                <div class="d-flex justify-content-between mt-4">
-                    <button type="submit" class="btn btn-gradient btn-100w text-success">Save</button>
-                    <a class="btn btn-gradient btn-100w" asp-controller="cars" asp-action="Index">Back</a>
-                </div>
-                
-            </form>
-        </div>        
-    </div>
-    }
+					<div class="form-group">
+						<label asp-for="ConfirmNewPassword" class="form-label"></label>
+						<input asp-for="ConfirmNewPassword" class="form-control" />
+						<span asp-validation-for="ConfirmNewPassword" class="text-danger"></span>
+					</div>
+					<div class="d-flex justify-content-between mt-4">
+						<button type="submit" class="btn btn-gradient btn-100w text-success">Save</button>
+						<div class="d-flex justify-content-end">
+							<a class="btn btn-gradient btn-100w" asp-controller="cars" asp-action="Index">Back</a>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	}
 }
-@* @section Scripts { *@
-@*     <partial name="_ValidationScriptsPartial" /> *@
-@* } *@
+@section Scripts {
+	<partial name="_ValidationScriptsPartial" />
+}
 

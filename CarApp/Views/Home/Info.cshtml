@@ -1,8 +1,13 @@
 ﻿<div class="container">
-	<h1 class="text-center my-4 display-4">How to Use the Fleet Manager</h1>
-
-	<div class="myFrame d-flex  flex-column flex-lg-row mb-3 ">
-		<div class="col-12 col-lg-6">
+	<div class="text-center my-4">
+		<h1 class="fw-light">
+			<span class="me-2">How to use</span>
+			<span class="display-4 textAqua ">fleet manager</span>
+		</h1>
+	</div>
+	<!-- First window -->
+	<div class="myFrame d-flex  flex-column flex-lg-row mb-5 ">
+		<div class="col-12 col-lg-6 my-3">
 			<h3>Explore the App Without Registration</h3>
 			<p class="me-4">
 				This demo lets you explore all app features using a pre-filled test account.
@@ -10,72 +15,161 @@
 				sorting data, and navigating the full interface — just like a real user.
 			</p>
 		</div>
-		
-		<div class="myFrame col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center">
-			<h5>No Sign-Up Needed </h5>
-			<div class="">				
-				<form method="post" asp-controller="Account" asp-action="login">						
-					<input type="hidden" name="DemoUser" value="true" />
-					<button type="submit" class="btn btn-gradient btn-200w btn-aqua">
-						Try me
-					</button>
-				</form>
-			</div>
+
+		<div class="myFrame col-12 col-lg-6 d-flex flex-column justify-content-center align-items-center my-3">
+			<h5>No Sign-Up Needed</h5>
+			<p class="text-center mt-2 px-3">
+				The demo account is temporary — any changes you make will be reset automatically each time you log in again. Feel free to explore without worry!
+			</p>
+			<form method="post" asp-controller="Account" asp-action="LoginAsDemo" class="mt-3">
+				<input type="hidden" name="DemoUser" value="true" />
+				<button type="submit" class="btn btn-gradient btn-200w btn-aqua">
+					Try Demo
+				</button>
+			</form>
 		</div>
 	</div>
 
-	
 
-	<div class="myFrame mb-5">
-		<h3>1. Register and Log In</h3>
-		<p>
-			To start managing your vehicles, you need to create an account. After successful registration,
-			log in with your credentials to access your private dashboard.
-		</p>
-		<ul>
-			<li>Secure registration and login</li>
-			<li>Your data is private – only you can see it</li>
-			<li>You can change your username or password anytime</li>
-		</ul>
+	<!-- Second window -->
+	<div class="myFrame d-flex flex-column flex-lg-row mb-5">
+
+		<div class="col-12 col-lg-6 d-flex myFrame flex-column gap-2 my-3 me-3 ">
+			<h5>Have you not sign up yet?</h5>
+			<div class="d-flex flex-column flex-xl-row justify-content-around border-bottom pb-4">
+				<div class="d-flex flex-column align-items-center">
+					<p>Are you new here?</p>
+					<a class="btn btn-gradient btn-200w btn-aqua" asp-controller="Account" asp-action="Register">Register</a>
+				</div>
+				<div class="d-flex flex-column align-items-center ">
+					<p>Already have an account?</p>
+					<a class="btn btn-gradient btn-200w" asp-controller="Account" asp-action="Login">Log in</a>
+				</div>
+			</div>
+			<div class="d-flex flex-column flex-xl-row justify-content-between mt-3 ">
+				<div class="me-3">
+					<h5>Edit your login data</h5>
+					<p>Just click edit button</p>
+				</div>				
+				<div>
+					<img src="/images/small1.png" alt="car-fleet" class="myFrame d-none d-sm-block img-small" />
+				</div>
+			</div>
+		</div>
+
+		<div class="col-12 col-lg-6 my-3">
+			<h3>Register and Manage Your Profile</h3>
+			<p>
+				To start managing your vehicles, you need to create an account. After successful registration,
+				log in with your credentials to access your private dashboard.
+			</p>
+			<ul>
+				<li>Secure registration and login</li>
+				<li>Your data is private – only you can see it</li>
+				<li>You can change your username or password anytime</li>
+			</ul>
+			<h5 class="mt-4">Manage Your Profile</h5>
+			<p>
+				In the profile section, you can update your username and password securely. Your account is protected and only you have access to your data.
+			</p>
+			<ul>
+				<li>Change your username</li>
+				<li>Update your password</li>
+				<li>Stay in control of your data</li>
+			</ul>
+		</div>
+
 	</div>
 
-	<div class="myFrame mb-5">
-		<h3>2. Add and Manage Vehicles</h3>
-		<p>
-			After logging in, go to the <strong>Your Fleet</strong> section to add your vehicles. You can enter brand, model,
-			year, license plate, mileage, and more. You can edit or delete vehicles anytime.
-		</p>
-		<ul>
-			<li>Add multiple vehicles</li>
-			<li>Edit or remove existing vehicles</li>
-			<li>Search and sort your vehicle list</li>
-		</ul>
+	<!-- Third window -->
+	<div class="myFrame d-flex flex-column flex-xl-row mb-5">
+		<div class="col-12 col-xl-6 my-3 me-3">
+			<h3>Add and Manage Vehicles</h3>
+			<p>
+				After logging in, go to the <strong>Your Fleet</strong> section to add your vehicles. You can enter brand, model,
+				year, license plate, mileage, and more. You can edit or delete vehicles anytime.
+			</p>
+			<ul>
+				<li>Add multiple vehicles</li>
+				<li>Edit or remove existing vehicles</li>
+				<li>Search and sort your vehicle list</li>
+			</ul>
+		</div>
+		<div class="col-12 col-xl-6 my-3">
+			<img src="/images/info1.png" alt="car-fleet" class="d-none d-xxl-block myFrame" />
+		</div>
 	</div>
 
-	<div class="myFrame mb-5">
-		<h3>3. Track Your Trips</h3>
-		<p>
-			For each vehicle, you can log trips, including route details, dates, and distance traveled. This helps
-			you track usage and plan maintenance.
-		</p>
-		<ul>
-			<li>Log trip date, route, distance, and purpose</li>
-			<li>Review trip history per vehicle</li>
-			<li>Access statistics: total km, longest trip, etc.</li>
-		</ul>
+	<!-- Fourth window -->
+	<div class="myFrame d-flex flex-column flex-xl-row mb-5">
+		<div class="col-12 col-xl-6 me-3 my-3">
+			<img src="/images/info2.png" alt="car-fleet" class="d-none d-xxl-block myFrame" />
+		</div>
+		<div class="col-12 col-xl-6 my-3">
+
+			<h3>Add Trips and Repairs</h3>
+			<p>
+				Each vehicle in your fleet has its own detail page where you can manage its records. After adding a car,
+				simply <strong>click on its row in the vehicle table</strong> to open the detail view. From there, you can start logging
+				trips and repairs:
+			</p>
+			<ul>
+				<li>
+					<strong>Trips</strong> – Add a new trip whenever the vehicle is used. Record the start and end date,
+					distance traveled, and trip purpose.
+				</li>
+				<li>
+					<strong>Repairs</strong> – Log every maintenance event or repair. Include dates, description,
+					mileage at the time of repair, and the cost.
+				</li>
+			</ul>
+			<p>
+				Tracking this data regularly helps you monitor vehicle usage and service needs, and gives you a full history
+				of each car’s lifecycle.
+			</p>
+			<p>
+				All trip logs and repairs are visible and manageable directly from the vehicle’s page, so you always
+				know what’s happening with your fleet.
+			</p>
+		</div>
+
 	</div>
 
-	
+	<!-- Fifth window -->
+	<div class="myFrame d-flex flex-column flex-xl-row mb-5">
+		<div class="col-12 col-xl-6 my-3 me-3">
+			<h3>Track Your Trips</h3>
+			<p>
+				For each vehicle, you can log trips, including route details, dates, and distance traveled. This helps
+				you track usage and plan maintenance.
+			</p>
+			<ul>
+				<li>Log trip date, route, distance, and purpose</li>
+				<li>Review trip history per vehicle</li>
+				<li>Access statistics: total km, longest trip, etc.</li>
+			</ul>
+		</div>
+		<div class="col-12 col-xl-6 my-3">
+			<img src="/images/info3.png" alt="car-fleet" class="d-none d-xxl-block myFrame" />
+		</div>
+	</div>
 
-	<div class="myFrame mb-5">
-		<h3>5. Manage Your Profile</h3>
-		<p>
-			In the profile section, you can update your username and password securely. Your account is protected and only you have access to your data.
-		</p>
-		<ul>
-			<li>Change your username</li>
-			<li>Update your password</li>
-			<li>Stay in control of your data</li>
-		</ul>
+	<!-- Sixth window -->
+	<div class="myFrame d-flex flex-column flex-xl-row mb-5">
+		<div class="col-12 col-xl-6 my-3 me-3">
+			<img src="/images/info4.png" alt="car-fleet" class="d-none d-xxl-block myFrame" />
+		</div>
+		<div class="col-12 col-xl-6 my-3">
+			<h3>Log and Track Repairs</h3>
+			<p>
+				Keep track of vehicle maintenance by logging repairs and service history. Record start and end dates,
+				description, mileage at repair, and total cost — so you always know what was done and when.
+			</p>
+			<ul>
+				<li>Log repair date, description, and duration</li>
+				<li>Track cost and mileage at time of repair</li>
+				<li>View full repair history for each vehicle</li>
+			</ul>
+		</div>
 	</div>
 </div>

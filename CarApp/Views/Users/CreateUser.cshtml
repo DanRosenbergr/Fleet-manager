@@ -1,11 +1,11 @@
 ﻿@using CarApp.ViewModels
-@model ManageUserViewModel
+@model CreateUserViewModel
 
 <div class="container d-flex justify-content-center my-3">
-	<div class="myFrame col-12 col-md-8 col-xl-4 position-relative">
-		<a asp-controller="Users" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
+	<div class="myFrame col-12 col-md-8 col-xl-4">
+		@* <a asp-controller="Users" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
 			<i class="bi bi-x-lg"></i>
-		</a>
+		</a> *@
 		<h3>Create user</h3>
 		<div class="text-danger" asp-validation-summary="All"></div>
 		<form asp-action="CreateUser" method="post">

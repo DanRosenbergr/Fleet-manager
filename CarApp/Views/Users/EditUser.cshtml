@@ -1,0 +1,45 @@
+﻿@using CarApp.ViewModels
+@model EditUserViewModel
+
+<div class="container d-flex justify-content-center my-3">
+	<div class="myFrame col-12 col-md-8 col-xl-4 ">
+		@* <a asp-controller="Users" asp-action="Index" class="position-absolute top-0 end-0 m-2 text-light fs-4" title="Back">
+			<i class="bi bi-x-lg"></i>
+		</a> *@
+		<h3>Edit user</h3>
+
+		<div class="text-danger" asp-validation-summary="All"></div>
+
+		@if (TempData["Message"] != null || TempData["UserNameMessage"] != null)
+		{
+			<div class="text-danger text-center">
+				@TempData["Message"] @TempData["UserNameMessage"]
+			</div>
+		}
+
+		<form asp-action="EditUser" method="post">
+			<input type="hidden" asp-for="Id" />
+			<div class="form-group">
+				<label asp-for="UserName" class="form-label"></label>
+				<input asp-for="UserName" class="form-control" />
+				<span asp-validation-for="UserName" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="CurrentPassword">Current Password</label>
+				<input asp-for="CurrentPassword" class="form-control" />
+				<span asp-validation-for="CurrentPassword" class="text-danger"></span>
+			</div>
+			<div class="form-group">
+				<label asp-for="NewPassword">New Password</label>
+				<input asp-for="NewPassword" class="form-control" />
+				<span asp-validation-for="NewPassword" class="text-danger"></span>
+			</div>
+
+			<div class="d-flex justify-content-between align-content-center">
+				<button type="submit" class="btn btn-gradient btn-100w text-success">Save</button>
+				<a class="btn btn-gradient btn-100w" asp-action="Index">Back</a>
+			</div>
+
+		</form>
+	</div>
+</div>
